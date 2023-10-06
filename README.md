@@ -3,3 +3,4 @@ Team Members:
 - Parth Dalwadi
 - Michael Provenzano
 - Dylan Lorrilliere
+- Anthony Panarello
