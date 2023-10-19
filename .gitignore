@@ -25,3 +25,7 @@ dist-ssr
 
 # Environment variables
 .env
+env
+
+#Cache files/bytecode
+__pycache__
