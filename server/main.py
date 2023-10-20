@@ -6,7 +6,7 @@ from passlib.context import CryptContext
 
 from server.model import User, fake_users_db
 
-
+SECRET_KEY = "69fe363e3c8ad17d4d8a052a17018c68394a1cba585eea0da6d89e4267b526b7"
 
 app = FastAPI()
 
