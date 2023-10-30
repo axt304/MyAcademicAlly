@@ -29,6 +29,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
 }
 
 h1 {

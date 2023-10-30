@@ -1,4 +1,57 @@
 #panel {
+    /* display: flex;
+    flex-direction: column; */
+    /* flex-grow: 1; */
+    position: relative;
+    width: 100%;
+    font-family: 'Poppins', 'Arial', sans-serif;
+    padding: 0 20px;
+    /* margin-right: 20px; */
+    font-size: 32px;
+    justify-content: center;
+}
+
+.header {
     display: flex;
     flex-grow: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    height: 100px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* padding-top: 10px; */
+    background-color: rgba(203,104,67,0.9);
+    border-radius: 10px;
+}
+
+.header button {
+    height: 64px;
+    width: 64px;
+    padding: 0;
+    text-align: center;
+}
+
+.main {
+    /* display: flex;
+    flex-direction: column; */
+    background-color: rgba(181, 43, 11, 0.5);
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.dashboardAdd{
+    cursor: pointer;
+    color: rgba(26, 26, 26, 0.5);
+    transition: color 0.5s ease-in-out;
+    -webkit-transition: color 0.5s ease-in-out;
+	-moz-transition: color 0.5s ease-in-out;
+	-ms-transition: color 0.5s ease-in-out;
+	-o-transition: color 0.5s ease-in-out;
+}
+
+.dashboardAdd:hover{
+    color: rgba(26, 26, 26, 1);
 }
