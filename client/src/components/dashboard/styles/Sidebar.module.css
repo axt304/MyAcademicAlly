@@ -76,7 +76,7 @@
     }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
     #sidebar {
         width: 60px;
     }
