@@ -45,3 +45,31 @@
 /* .taskDate {
     justify-content: flex-end;
 } */
+
+@media (max-width: 992px) {
+    .taskName {
+        word-break: break-all;
+    }
+
+    .taskDate {
+        word-break: break-all;
+    }
+}
+
+@media (max-width: 480px) {
+    .task {
+        padding: 5px;
+    }
+
+    .taskName {
+        word-break: break-all;
+    }
+
+    .taskDate {
+        word-break: break-all;
+    }
+
+    .taskIcons {
+        margin: 0 6px;
+    }
+}
