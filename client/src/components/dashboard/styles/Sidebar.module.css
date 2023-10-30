@@ -1,6 +1,6 @@
 #sidebar {
     margin: 0;
-    padding: 0 1.7rem;
+    padding: 0 0.75rem;
     border: none;
     outline: none;
     box-sizing: border-box;
@@ -54,6 +54,10 @@
     align-items: center;
     gap: 1.5rem;
     transition: background-color 0.5s ease-in-out;
+    -webkit-transition: background-color 0.5s ease-in-out;
+	-moz-transition: background-color 0.5s ease-in-out;
+	-ms-transition: background-color 0.5s ease-in-out;
+	-o-transition: background-color 0.5s ease-in-out;
 }
 
 .sidebarList button:hover {

@@ -1,0 +1,47 @@
+.taskList {
+    list-style: none;
+    padding: 0;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* .task:hover{
+    background-color: yellow;
+} */
+
+.taskIcons {
+    cursor: pointer;
+    margin: 0 15px;
+    color: rgba(26, 26, 26, 0.5);
+    transition: color 0.5s ease-in-out;
+    -webkit-transition: color 0.5s ease-in-out;
+	-moz-transition: color 0.5s ease-in-out;
+	-ms-transition: color 0.5s ease-in-out;
+	-o-transition: color 0.5s ease-in-out;
+}
+
+.taskIconsHover:hover {
+    color: rgba(26, 26, 26, 1);
+}
+
+.unchecked:hover{
+    color: rgba(255, 255, 0, 0.5);
+}
+
+.checked{
+    color: rgba(255, 255, 0, 1);
+}
+
+.taskName {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* .taskDate {
+    justify-content: flex-end;
+} */
