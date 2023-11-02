@@ -2,7 +2,7 @@ import React from 'react'
 import { FaFolderPlus, FaStickyNote, FaTachometerAlt, FaSignOutAlt } from 'react-icons/fa'
 import styles from './styles/Sidebar.module.css'
 
-const Sidebar = () => {
+const Sidebar = ({isAddFormOpen, setIsAddFormOpen}) => {
   return (
     <div id={styles.sidebar}>
       <ul className={styles.sidebarList}>
@@ -25,7 +25,7 @@ const Sidebar = () => {
         </li>
 
         <li>
-            <button onClick={() => console.log(3)}>
+            <button onClick={() => setIsAddFormOpen(!isAddFormOpen)}>
                 <FaStickyNote className={styles.fa}/>
                 <span className={styles.label}>Create Task</span>
             </button>
