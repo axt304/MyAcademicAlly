@@ -23,7 +23,7 @@ const AddForm = ({handleAdd, setTaskName, setTaskDescription, setTaskDate, setIs
             onChange={(e) => setTaskDescription(e.target.value)}
         />
         <input 
-            type="text"
+            type="date"
             placeholder="Date"
             required
             autoComplete='off'
