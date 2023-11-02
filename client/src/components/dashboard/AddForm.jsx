@@ -10,6 +10,7 @@ const AddForm = ({handleAdd, setTaskName, setTaskDescription, setTaskDate, setIs
             type="text"
             placeholder="Name"
             required
+            autoFocus
             autoComplete='off'
             onClick={(e) => e.target.select()}
             onChange={(e) => setTaskName(e.target.value)}
