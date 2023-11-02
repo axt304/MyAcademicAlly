@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import Panel from './Panel'
+import AddForm from './AddForm'
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([
@@ -47,15 +48,20 @@ const Dashboard = () => {
       />
       <Panel 
         tasks={tasks}
-        handleAdd={handleAdd}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
-        setTaskName={setTaskName}
-        setTaskDescription={setTaskDescription}
-        setTaskDate={setTaskDate}
         isAddFormOpen={isAddFormOpen}
         setIsAddFormOpen={setIsAddFormOpen}
       />
+      {isAddFormOpen && 
+        <AddForm 
+          handleAdd={handleAdd}
+          setTaskName={setTaskName}
+          setTaskDescription={setTaskDescription}
+          setTaskDate={setTaskDate}
+          setIsAddFormOpen={setIsAddFormOpen}
+        />
+      }
     </>
   )
 }

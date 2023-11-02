@@ -2,9 +2,8 @@ import React from 'react'
 import styles from './styles/Panel.module.css'
 import { FaPlus } from 'react-icons/fa'
 import TaskList from '../tasks/TaskList'
-import AddForm from './AddForm'
 
-const Panel = ({tasks, handleCheck, handleDelete, isAddFormOpen, handleAdd, setTaskName, setTaskDescription, setTaskDate, setIsAddFormOpen}) => {
+const Panel = ({tasks, handleCheck, handleDelete, isAddFormOpen, setIsAddFormOpen}) => {
   return (
     <div id={styles.panel}>
       <header className={styles.header}>
@@ -20,15 +19,6 @@ const Panel = ({tasks, handleCheck, handleDelete, isAddFormOpen, handleAdd, setT
           isAddFormOpen={isAddFormOpen}
         />
       </main>
-      {isAddFormOpen && 
-        <AddForm 
-          handleAdd={handleAdd}
-          setTaskName={setTaskName}
-          setTaskDescription={setTaskDescription}
-          setTaskDate={setTaskDate}
-          setIsAddFormOpen={setIsAddFormOpen}
-        />
-      }
     </div>
   )
 }
