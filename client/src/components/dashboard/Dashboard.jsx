@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import Panel from './Panel'
 import AddForm from './AddForm'
+import api from '../../api/api'
 import apiRequest from '../../utils/apiRequest'
 
 const Dashboard = () => {
@@ -11,14 +12,17 @@ const Dashboard = () => {
   const [taskName, setTaskName] = useState('')
   const [taskDescription, setTaskDescription] = useState('')
   const [taskDate, setTaskDate] = useState('')
-  const [currentID, setCurrentID] = useState(3)
 
   const handleAdd = async (e) => {
     e.preventDefault()
-    const newTask = {'id': currentID, 'name': taskName, 'description': taskDescription, 'due_date': taskDate, 'is_checked': 0, 'user_id': 3, 'project_id': 3}
-    setIsAddFormOpen(false)
-    setTasks([...tasks, newTask])
-    setCurrentID(currentID + 1)
+    try {
+      const newTask = {'name': taskName, 'description': taskDescription, 'due_date': taskDate, is_checked: 0}
+      setIsAddFormOpen(false)
+      const response = await api.post('/api/tasks', newTask)
+      fetchItems()
+    } catch (err) {
+      console.log(`Error: ${err.message}`)
+    }
   }
 
   const handleCheck = async (id) => {
@@ -33,10 +37,8 @@ const Dashboard = () => {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/tasks/15')
-      if (!response.ok) throw Error("Did not receive expected data.")
-      const currentTasks = await response.json()
-      setTasks(currentTasks)
+      const response = await api.get('/api/alltasks')
+      setTasks(response.data)
     } catch (err) {
       console.log(err)
     } finally {
