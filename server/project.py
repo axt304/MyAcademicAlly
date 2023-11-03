@@ -1,18 +1,25 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
+
+from db import Base
 
 router = APIRouter()
 
-class ProjectData(BaseModel):
-    pid: int
-    name: str
-    color: str
-    user_id: int
+class ProjectData(Base):
+    __tablename__ = "projects"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True)
+    color = Column(String)
+    user_id = relationship("UserData")
 
 class Project(BaseModel):
     name: str
     color: str
     user_id: int
+    class Config:
+        orm_mode = True
 
 @router.post("/api/projects", tags=["projects"])
 async def create_project(project: Project):

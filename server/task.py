@@ -1,15 +1,20 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
+
+from db import Base
 
 router = APIRouter()
 
-class TaskData(BaseModel):
-    tid: int
-    name: str
-    description: str
-    due_date: str
-    user_id: int
-    project_id: int
+class TaskData(Base):
+    __tablename__ = "tasks"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String)
+    description = Column(String)
+    due_date = Column(String)
+    user_id = relationship("UserData")
+    project_id = relationship("ProjectData")
 
 class Task(BaseModel):
     name: str
@@ -17,6 +22,8 @@ class Task(BaseModel):
     due_date: str
     user_id: int
     project_id: int
+    class Config:
+        orm_mode = True
 
 @router.post("/api/tasks", tags=["tasks"])
 async def create_task(task: Task):

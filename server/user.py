@@ -1,21 +1,28 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship, Session
+
+from db import Base, get_db
 
 router = APIRouter()
 
-class UserData(BaseModel):
-    uid: int
-    name: str
-    password: str
-    email: str
+class UserData(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String)
+    password = Column(String)
+    email = Column(String, unique=True)
 
 class User(BaseModel):
     name: str
     password: str
     email: str
+    class Config:
+        orm_mode = True
 
 @router.post("/api/users", tags=["users"])
-async def create_user(user: User):
+async def create_user(user: User, db: Session = Depends(get_db)):
     udata = UserData(uid=get_next_available_user_id(), name=user.name, password=user.password, email=user.email)
     return {"message": "Must implement user creation"}
 
