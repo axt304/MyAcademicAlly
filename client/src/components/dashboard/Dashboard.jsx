@@ -16,7 +16,7 @@ const Dashboard = () => {
   const handleAdd = async (e) => {
     e.preventDefault()
     try {
-      const newTask = {'name': taskName, 'description': taskDescription, 'due_date': taskDate, is_checked: 0}
+      const newTask = {'name': taskName, 'description': taskDescription, 'due_date': taskDate, is_checked: 0, user_id: 11, project_id: 21}
       setIsAddFormOpen(false)
       const response = await api.post('/api/tasks', newTask)
       fetchItems()
