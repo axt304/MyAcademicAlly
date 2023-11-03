@@ -5,6 +5,9 @@ from pydantic import BaseModel
 import project, task, user
 
 app = FastAPI()
+app.include_router(project.router)
+app.include_router(task.router)
+app.include_router(user.router)
 
 #engine=create_engine(SQL_DB)
 #SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
