@@ -3,13 +3,10 @@ import { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import Panel from './Panel'
 import AddForm from './AddForm'
+import apiRequest from '../../utils/apiRequest'
 
 const Dashboard = () => {
-  const [tasks, setTasks] = useState([
-    {'id': 1, 'name': 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz', 'description': 'first task description', 'due_date': '2023-10-28', 'is_checked': 0, 'user_id': 1, 'project_id': 1},
-    {'id': 2, 'name': 'second task', 'description': 'second task description', 'due_date': '2023-10-29', 'is_checked': 1, 'user_id': 2, 'project_id': 2}
-  ])
-
+  const [tasks, setTasks] = useState([])
   const [isAddFormOpen, setIsAddFormOpen] = useState(false)
   const [taskName, setTaskName] = useState('')
   const [taskDescription, setTaskDescription] = useState('')
@@ -34,11 +31,28 @@ const Dashboard = () => {
     setTasks(newTasks)
   }
 
+  const fetchItems = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/tasks/15')
+      if (!response.ok) throw Error("Did not receive expected data.")
+      const currentTasks = await response.json()
+      setTasks(currentTasks)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      console.log(1)
+    }
+  }
+
   useEffect(() => {
     setTaskName('')
     setTaskDescription('')
     setTaskDate('')
   }, [isAddFormOpen])
+
+  useEffect(() => {
+    fetchItems()
+  }, [])
 
   return (
     <>
