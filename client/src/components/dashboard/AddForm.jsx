@@ -10,6 +10,7 @@ const AddForm = ({handleAdd, setTaskName, setTaskDescription, setTaskDate, setIs
             type="text"
             placeholder="Name"
             required
+            autoFocus
             autoComplete='off'
             onClick={(e) => e.target.select()}
             onChange={(e) => setTaskName(e.target.value)}
@@ -23,7 +24,7 @@ const AddForm = ({handleAdd, setTaskName, setTaskDescription, setTaskDate, setIs
             onChange={(e) => setTaskDescription(e.target.value)}
         />
         <input 
-            type="text"
+            type="date"
             placeholder="Date"
             required
             autoComplete='off'

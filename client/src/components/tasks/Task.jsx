@@ -4,7 +4,7 @@ import styles from './styles/Task.module.css'
 
 const Task = ({task, handleCheck, handleDelete}) => {
   return (
-    <li className={styles.task}>
+    <li className={(task.is_checked) ? `${styles.task} ${styles.taskCompleted}` : `${styles.task}`}>
         <FaCheck 
             className={(task.is_checked) ? `${styles.taskIcons} ${styles.checked}` : `${styles.taskIcons} ${styles.unchecked}`} 
             onClick={() => handleCheck(task.id)}
