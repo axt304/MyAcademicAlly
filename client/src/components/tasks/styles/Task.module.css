@@ -8,6 +8,18 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+    background-color: rgba(181, 43, 11, 0.5);
+    margin: 20px 0;
+    border-radius: 10px;
+    transition: background-color 0.5s ease-in-out;
+    -webkit-transition: background-color 0.5s ease-in-out;
+	-moz-transition: background-color 0.5s ease-in-out;
+	-ms-transition: background-color 0.5s ease-in-out;
+	-o-transition: background-color 0.5s ease-in-out;
+}
+
+.taskCompleted {
+    background-color: rgba(80, 43, 11, 0.5);
 }
 
 /* .task:hover{
@@ -23,6 +35,11 @@
 	-moz-transition: color 0.5s ease-in-out;
 	-ms-transition: color 0.5s ease-in-out;
 	-o-transition: color 0.5s ease-in-out;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .taskIconsHover:hover {
