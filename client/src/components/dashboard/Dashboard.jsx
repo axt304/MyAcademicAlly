@@ -18,7 +18,7 @@ const Dashboard = () => {
     setTaskName('')
     setTaskDescription('')
     setTaskDate('')
-  }, [isAddFormOpen, isEditFormOpen])
+  }, [isAddFormOpen])
 
   useEffect(() => {
     fetchTasks()
