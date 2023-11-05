@@ -1,0 +1,111 @@
+.editForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 500px;
+    top: 50%;
+    left: 63%;
+    transform: translate(-63%, -50%);
+    background-color: rgba(120, 50, 100, 1);
+    width: 40%;
+    border: solid;
+    border-radius: 20px;
+    font-size: 24px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#checkDiv {
+    width: 80%;
+    font-size: 20px;
+    /* display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    border-style: none; */
+    /* margin: 15px 0; */
+    /* width: 70%; */
+    /* height: 10%; */
+    /* margin: 0;
+    padding: 0; */
+    /* align-items: start;
+    justify-content: start; */
+}
+
+#checkDiv input{
+    width: auto;
+}
+
+.editForm label {
+    color: pink;
+    font-weight: bold;
+    margin: 30px;
+}
+
+.editForm input {
+    width: 70%;
+    margin: 15px 10px;
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+    font-size: 16px;
+    background-color: pink;
+    border-style: none;
+}
+
+.editForm button {
+    font-size: 16px;
+    margin: 30px 10px;
+    width: 100px;
+    background-color: orange;
+    border-style: none;
+    transition: background-color 0.5s ease-in-out;
+    -webkit-transition: background-color 0.5s ease-in-out;
+	-moz-transition: background-color 0.5s ease-in-out;
+	-ms-transition: background-color 0.5s ease-in-out;
+	-o-transition: background-color 0.5s ease-in-out;
+}
+
+.editForm button:hover{
+    background-color: rgb(255, 255, 50);
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .editForm input {
+        width: 80%;
+    }
+}
+
+@media (max-width: 991px) {
+    .editForm {
+        width: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .editForm {
+        height: 400px;
+        width: 280px;
+        transform: translate(-54%, -50%);
+    }
+
+    .editForm input {
+        width: 80%;
+    }
+}
+
+@media (max-width: 320px) {
+    .editForm {
+       width: 240px;
+    }
+}
