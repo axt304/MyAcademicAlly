@@ -30,7 +30,7 @@ const Dashboard = () => {
     try {
       const newTasks = tasks.map(task => task.id === id ? {...task, is_checked: !task.is_checked} : task)
       setTasks(newTasks)
-      const newTask = tasks.filter(task => task.id === id)
+      const newTask = tasks.filter(task => task.id === id)[0]
 
       if (newTask['is_checked'] === 0 || newTask['is_checked'] === false) {
         newTask['is_checked'] = 0
@@ -38,7 +38,7 @@ const Dashboard = () => {
         newTask['is_checked'] = 1
       }
       
-      const response = await api.put(`/api/tasks/${id}`, newTask[0])
+      const response = await api.put(`/api/tasks/${id}`, newTask)
       console.log(response.data)
     } catch (err) {
       console.log(`Error: ${err.message}`)
