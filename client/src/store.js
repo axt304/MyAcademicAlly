@@ -22,6 +22,14 @@ export default createStore({
     setIsAddFormOpen: action((state, payload) => {
         state.isAddFormOpen = payload
     }),
+    isEditFormOpen: false,
+    setIsEditFormOpen: action((state, payload) => {
+        state.isEditFormOpen = payload
+    }),
+    editTask: {'id': 0, 'name': '', 'description': '', 'due_date': '', 'is_checked': 0, 'user_id': 0, 'project_id': 0},
+    setEditTask: action((state, payload) => {
+        state.editTask = payload
+    }),
     fetchTasks: thunk(async (actions, e, helpers) => {
         try {
             const { setTasks } = helpers.getStoreActions()
@@ -63,9 +71,9 @@ export default createStore({
             
             const response = await api.put(`/api/tasks/${id}`, newTask)
             console.log(response.data)
-          } catch (err) {
+        } catch (err) {
             console.log(`Error: ${err.message}`)
-          }
+        }
     }),
     deleteTask: thunk(async (actions, id, helpers) => {
         try {
@@ -76,6 +84,30 @@ export default createStore({
             const response = await api.delete(`/api/tasks/${id}`)
         } catch (err) {
             console.log(`Error: ${err.message}`)
+        }
+    }),
+    updateTask: thunk(async (actions, e, helpers) => {
+        e.preventDefault()
+        try {
+            const { tasks, editTask } = helpers.getState()
+            const { setTasks, setIsEditFormOpen } = helpers.getStoreActions()
+            const newTasks = tasks.map(task => task.id === editTask.id ? {...task, 'name': editTask.name, 'description': editTask.description, 'due_date': editTask.due_date, 'is_checked': editTask.is_checked} : task)
+            setTasks(newTasks)
+            setIsEditFormOpen(false)
+            const newTask = newTasks.filter(task => task.id === editTask.id)[0]
+
+            if (newTask['is_checked'] === 0 || newTask['is_checked'] === false) {
+                newTask['is_checked'] = 0
+              } else {
+                newTask['is_checked'] = 1
+            }
+
+            const response = await api.put(`/api/tasks/${newTask.id}`, newTask)
+        } catch (err) {
+            console.log(`Error: ${err.message}`)
+        } finally {
+            const { setEditTask } = helpers.getStoreActions()
+            setEditTask({'id': 0, 'name': '', 'description': '', 'due_date': '', 'is_checked': 0, 'user_id': 0, 'project_id': 0})
         }
     })
 })

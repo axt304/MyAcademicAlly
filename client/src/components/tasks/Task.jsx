@@ -1,11 +1,15 @@
 import React from 'react'
 import { FaCheck, FaBook, FaEdit, FaTrash } from 'react-icons/fa'
 import styles from './styles/Task.module.css'
-import { useStoreActions } from 'easy-peasy';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
 const Task = ({task}) => {
   const checkTask = useStoreActions((actions) => actions.checkTask)
   const deleteTask = useStoreActions((actions) => actions.deleteTask)
+  const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
+  const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
+  const setIsEditFormOpen = useStoreActions((actions) => actions.setIsEditFormOpen)
+  const setEditTask = useStoreActions((actions) => actions.setEditTask)
 
   return (
     <li className={(task.is_checked) ? `${styles.task} ${styles.taskCompleted}` : `${styles.task}`}>
@@ -21,7 +25,7 @@ const Task = ({task}) => {
 
         <FaEdit 
             className={`${styles.taskIcons} ${styles.taskIconsHover}`}
-            onClick={() => console.log('edit')}
+            onClick={() => {if (!isAddFormOpen) setIsEditFormOpen(!isEditFormOpen); setEditTask(task) }}
         />
 
         <FaTrash 

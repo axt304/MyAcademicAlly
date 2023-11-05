@@ -1,32 +1,27 @@
-.addForm {
+.editForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: fixed;
-    height: 400px;
+    height: 500px;
     top: 50%;
-    left: 60%;
-    transform: translate(-60%, -50%);
-    background-color: rgba(120, 50, 100, 1);
-    width: 30%;
+    left: 50%;
+    transform: translate(-30%, -50%);
+    background-color: rgb(14, 30, 78);
+    width: 40%;
     border: solid;
     border-radius: 20px;
     font-size: 24px;
 }
 
-.buttons {
-    display: flex;
-    flex-direction: row;
-}
-
-.addForm label {
+.editForm label {
     color: pink;
     font-weight: bold;
     margin: 30px;
 }
 
-.addForm input {
+.editForm input {
     width: 70%;
     margin: 15px 10px;
     border-radius: 10px;
@@ -37,9 +32,27 @@
     border-style: none;
 }
 
-.addForm button {
+.editForm input[type=date] {
+    padding: 8.5px 10px;
+}
+
+#checkBox {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.editForm button {
     font-size: 16px;
-    margin: 30px 10px;
+    margin: 20px 10px;
     width: 100px;
     background-color: orange;
     border-style: none;
@@ -50,46 +63,47 @@
 	-o-transition: background-color 0.5s ease-in-out;
 }
 
-.addForm button:hover{
+.editForm button:hover{
     background-color: rgb(255, 255, 50);
 }
 
 @media (min-width: 1201px) and (max-width: 1400px) {
-    .addForm {
-        transform: translate(-50%, -50%);
+    .editForm {
+        transform: translate(-18%, -50%);
     }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .addForm {
-        transform: translate(-40%, -50%);
+    .editForm {
+        transform: translate(-18%, -50%);
     }
-    .addForm input {
+    
+    .editForm input {
         width: 80%;
     }
 }
 
 @media (max-width: 991px) {
-    .addForm {
+    .editForm {
         width: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-30%, -50%);
     }
 }
 
 @media (max-width: 480px) {
-    .addForm {
-        height: 400px;
+    .editForm {
+        height: 500px;
         width: 280px;
-        transform: translate(-54%, -50%);
+        transform: translate(-42%, -50%);
     }
 
-    .addForm input {
+    .editForm input {
         width: 80%;
     }
 }
 
 @media (max-width: 320px) {
-    .addForm {
+    .editForm {
        width: 240px;
     }
 }
