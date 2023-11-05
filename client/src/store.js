@@ -65,7 +65,7 @@ export default createStore({
             console.log(response.data)
           } catch (err) {
             console.log(`Error: ${err.message}`)
-          }
+        }
     }),
     deleteTask: thunk(async (actions, id, helpers) => {
         try {
