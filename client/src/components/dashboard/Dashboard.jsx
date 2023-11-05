@@ -19,6 +19,7 @@ const Dashboard = () => {
       const newTask = {'name': taskName, 'description': taskDescription, 'due_date': taskDate, 'is_checked': 0, 'user_id': 11, 'project_id': 21}
       setIsAddFormOpen(false)
       const response = await api.post('/api/tasks', newTask)
+      console.log(response.data)
       fetchItems()
     } catch (err) {
       console.log(`Error: ${err.message}`)
@@ -28,11 +29,15 @@ const Dashboard = () => {
   const handleCheck = async (id) => {
     const newTasks = tasks.map(task => task.id === id ? {...task, is_checked: !task.is_checked} : task)
     setTasks(newTasks)
+    const newTask = tasks.filter(task => task.id === id)
+    const response = await api.put(`/api/tasks/${id}`, newTask[0])
+    console.log(response.data)
   }
 
   const handleDelete = async (id) => {
     const newTasks = tasks.filter(task => task.id !== id)
     setTasks(newTasks)
+    const response = await api.delete(`/api/tasks/${id}`)
   }
 
   const fetchItems = async () => {
