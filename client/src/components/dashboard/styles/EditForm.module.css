@@ -6,43 +6,13 @@
     position: fixed;
     height: 500px;
     top: 50%;
-    left: 63%;
-    transform: translate(-63%, -50%);
-    background-color: rgba(120, 50, 100, 1);
+    left: 50%;
+    transform: translate(-30%, -50%);
+    background-color: rgb(14, 30, 78);
     width: 40%;
     border: solid;
     border-radius: 20px;
     font-size: 24px;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-#checkDiv {
-    width: 80%;
-    font-size: 20px;
-    /* display: flex;
-    flex-direction: row;
-    font-size: 20px;
-    border-radius: 0;
-    margin: 0;
-    padding: 0;
-    border-style: none; */
-    /* margin: 15px 0; */
-    /* width: 70%; */
-    /* height: 10%; */
-    /* margin: 0;
-    padding: 0; */
-    /* align-items: start;
-    justify-content: start; */
-}
-
-#checkDiv input{
-    width: auto;
 }
 
 .editForm label {
@@ -62,9 +32,27 @@
     border-style: none;
 }
 
+.editForm input[type=date] {
+    padding: 8.5px 10px;
+}
+
+#checkBox {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .editForm button {
     font-size: 16px;
-    margin: 30px 10px;
+    margin: 20px 10px;
     width: 100px;
     background-color: orange;
     border-style: none;
@@ -79,7 +67,17 @@
     background-color: rgb(255, 255, 50);
 }
 
+@media (min-width: 1201px) and (max-width: 1400px) {
+    .editForm {
+        transform: translate(-18%, -50%);
+    }
+}
+
 @media (min-width: 992px) and (max-width: 1200px) {
+    .editForm {
+        transform: translate(-18%, -50%);
+    }
+    
     .editForm input {
         width: 80%;
     }
@@ -88,15 +86,15 @@
 @media (max-width: 991px) {
     .editForm {
         width: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-30%, -50%);
     }
 }
 
 @media (max-width: 480px) {
     .editForm {
-        height: 400px;
+        height: 500px;
         width: 280px;
-        transform: translate(-54%, -50%);
+        transform: translate(-42%, -50%);
     }
 
     .editForm input {

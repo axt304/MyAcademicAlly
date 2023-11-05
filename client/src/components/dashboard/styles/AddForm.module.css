@@ -54,7 +54,16 @@
     background-color: rgb(255, 255, 50);
 }
 
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 1201px) and (max-width: 1400px) {
+    .addForm {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (max-width: 1024px) {
+    .addForm {
+        transform: translate(-40%, -50%);
+    }
     .addForm input {
         width: 80%;
     }

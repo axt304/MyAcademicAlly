@@ -38,14 +38,12 @@ const EditForm = () => {
             onClick={(e) => e.target.select()}
             onChange={(e) => setEditTask({...editTask, 'due_date': e.target.value})}
         />
-        <div id={styles.checkDiv}>
-            <label>Complete:</label>
-            <input
-                type="checkbox"
-                checked={editTask.is_checked}
-                onChange={() => setEditTask({...editTask, 'is_checked': !editTask.is_checked})}
-            />
-        </div>
+        <input
+            id={styles.checkBox}
+            type="checkbox"
+            checked={editTask.is_checked}
+            onChange={() => setEditTask({...editTask, 'is_checked': !editTask.is_checked})}
+        />
         <div className={styles.buttons}>
             <button
                 type='submit'
