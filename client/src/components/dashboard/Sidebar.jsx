@@ -6,6 +6,7 @@ import { useStoreState, useStoreActions } from 'easy-peasy';
 const Sidebar = () => {
   const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
   const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
+  const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
 
   return (
     <div id={styles.sidebar}>
@@ -29,7 +30,7 @@ const Sidebar = () => {
         </li>
 
         <li>
-            <button onClick={() => setIsAddFormOpen(!isAddFormOpen)}>
+            <button onClick={() => {if (!isEditFormOpen) setIsAddFormOpen(!isAddFormOpen)}}>
                 <FaStickyNote className={styles.fa}/>
                 <span className={styles.label}>Create Task</span>
             </button>
