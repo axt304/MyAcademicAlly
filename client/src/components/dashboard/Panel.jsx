@@ -2,8 +2,12 @@ import React from 'react'
 import styles from './styles/Panel.module.css'
 import { FaPlus } from 'react-icons/fa'
 import TaskList from '../tasks/TaskList'
+import { useStoreState, useStoreActions } from 'easy-peasy'
 
-const Panel = ({tasks, handleCheck, handleDelete, isAddFormOpen, setIsAddFormOpen}) => {
+const Panel = () => {
+  const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
+  const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
+
   return (
     <div id={styles.panel}>
       <header className={styles.header}>
@@ -12,12 +16,7 @@ const Panel = ({tasks, handleCheck, handleDelete, isAddFormOpen, setIsAddFormOpe
       </header>
 
       <main className={styles.main}>
-        <TaskList 
-          tasks={tasks} 
-          handleCheck={handleCheck} 
-          handleDelete={handleDelete} 
-          isAddFormOpen={isAddFormOpen}
-        />
+        <TaskList />
       </main>
     </div>
   )

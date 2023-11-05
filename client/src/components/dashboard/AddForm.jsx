@@ -1,10 +1,16 @@
 import React from 'react'
 import styles from './styles/AddForm.module.css'
+import { useStoreActions } from 'easy-peasy'
 
-const AddForm = ({handleAdd, setTaskName, setTaskDescription, setTaskDate, setIsAddFormOpen}) => {
+const AddForm = () => {
+  const setTaskName = useStoreActions((actions) => actions.setTaskName)
+  const setTaskDescription = useStoreActions((actions) => actions.setTaskDescription)
+  const setTaskDate = useStoreActions((actions) => actions.setTaskDate)
+  const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
+  const addTask = useStoreActions((actions) => actions.addTask)
 
   return (
-    <form className={styles.addForm} onSubmit={(e) => handleAdd(e)}>
+    <form className={styles.addForm} onSubmit={(e) => addTask(e)}>
         <label htmlFor='addForm'>Add Task</label>
         <input 
             type="text"
