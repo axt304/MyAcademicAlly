@@ -31,6 +31,13 @@ const Dashboard = () => {
       const newTasks = tasks.map(task => task.id === id ? {...task, is_checked: !task.is_checked} : task)
       setTasks(newTasks)
       const newTask = tasks.filter(task => task.id === id)
+
+      if (newTask['is_checked'] === 0 || newTask['is_checked'] === false) {
+        newTask['is_checked'] = 0
+      } else {
+        newTask['is_checked'] = 1
+      }
+      
       const response = await api.put(`/api/tasks/${id}`, newTask[0])
       console.log(response.data)
     } catch (err) {
