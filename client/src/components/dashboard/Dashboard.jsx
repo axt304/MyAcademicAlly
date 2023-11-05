@@ -27,17 +27,25 @@ const Dashboard = () => {
   }
 
   const handleCheck = async (id) => {
-    const newTasks = tasks.map(task => task.id === id ? {...task, is_checked: !task.is_checked} : task)
-    setTasks(newTasks)
-    const newTask = tasks.filter(task => task.id === id)
-    const response = await api.put(`/api/tasks/${id}`, newTask[0])
-    console.log(response.data)
+    try {
+      const newTasks = tasks.map(task => task.id === id ? {...task, is_checked: !task.is_checked} : task)
+      setTasks(newTasks)
+      const newTask = tasks.filter(task => task.id === id)
+      const response = await api.put(`/api/tasks/${id}`, newTask[0])
+      console.log(response.data)
+    } catch (err) {
+      console.log(`Error: ${err.message}`)
+    }
   }
 
   const handleDelete = async (id) => {
-    const newTasks = tasks.filter(task => task.id !== id)
-    setTasks(newTasks)
-    const response = await api.delete(`/api/tasks/${id}`)
+    try {
+      const newTasks = tasks.filter(task => task.id !== id)
+      setTasks(newTasks)
+      const response = await api.delete(`/api/tasks/${id}`)
+    } catch (err) {
+      console.log(`Error: ${err.message}`)
+    }
   }
 
   const fetchItems = async () => {
