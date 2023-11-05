@@ -1,8 +1,12 @@
 import React from 'react'
 import { FaFolderPlus, FaStickyNote, FaTachometerAlt, FaSignOutAlt } from 'react-icons/fa'
 import styles from './styles/Sidebar.module.css'
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
-const Sidebar = ({isAddFormOpen, setIsAddFormOpen}) => {
+const Sidebar = () => {
+  const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
+  const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
+
   return (
     <div id={styles.sidebar}>
       <ul className={styles.sidebarList}>

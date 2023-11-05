@@ -1,13 +1,17 @@
 import React from 'react'
 import { FaCheck, FaBook, FaEdit, FaTrash } from 'react-icons/fa'
 import styles from './styles/Task.module.css'
+import { useStoreActions } from 'easy-peasy';
 
-const Task = ({task, handleCheck, handleDelete}) => {
+const Task = ({task}) => {
+  const checkTask = useStoreActions((actions) => actions.checkTask)
+  const deleteTask = useStoreActions((actions) => actions.deleteTask)
+
   return (
     <li className={(task.is_checked) ? `${styles.task} ${styles.taskCompleted}` : `${styles.task}`}>
         <FaCheck 
             className={(task.is_checked) ? `${styles.taskIcons} ${styles.checked}` : `${styles.taskIcons} ${styles.unchecked}`} 
-            onClick={() => handleCheck(task.id)}
+            onClick={() => checkTask(task.id)}
         />
 
         <FaBook 
@@ -22,7 +26,7 @@ const Task = ({task, handleCheck, handleDelete}) => {
 
         <FaTrash 
             className={`${styles.taskIcons} ${styles.taskIconsHover}`}
-            onClick={() => handleDelete(task.id)}
+            onClick={() => deleteTask(task.id)}
         />
 
         <span
