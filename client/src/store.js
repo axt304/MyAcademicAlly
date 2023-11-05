@@ -63,7 +63,7 @@ export default createStore({
             
             const response = await api.put(`/api/tasks/${id}`, newTask)
             console.log(response.data)
-          } catch (err) {
+        } catch (err) {
             console.log(`Error: ${err.message}`)
         }
     }),
