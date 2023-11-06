@@ -1,13 +1,15 @@
 import React from 'react'
 import { FaFolderPlus, FaStickyNote, FaTachometerAlt, FaSignOutAlt } from 'react-icons/fa'
 import styles from './styles/Sidebar.module.css'
-import { useStoreState, useStoreActions } from 'easy-peasy';
+import { useStoreState, useStoreActions, action } from 'easy-peasy';
 
 const Sidebar = () => {
   const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
   const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
   const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
   const isDescriptionFormOpen = useStoreState((state) => state.isDescriptionFormOpen)
+  const isAddProjectFormOpen = useStoreState((state) => state.isAddProjectFormOpen)
+  const setIsAddProjectFormOpen = useStoreActions((actions) => actions.setIsAddProjectFormOpen)
 
   return (
     <div id={styles.sidebar}>
@@ -24,14 +26,14 @@ const Sidebar = () => {
         </li>
 
         <li>
-            <button onClick={() => console.log(2)}>
+            <button onClick={() => {if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen) setIsAddProjectFormOpen(!isAddProjectFormOpen)}}>
                 <FaFolderPlus className={styles.fa}/>
                 <span className={styles.label}>Create Project</span>
             </button>
         </li>
 
         <li>
-            <button onClick={() => {if (!isEditFormOpen && !isDescriptionFormOpen) setIsAddFormOpen(!isAddFormOpen)}}>
+            <button onClick={() => {if (!isEditFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen) setIsAddFormOpen(!isAddFormOpen)}}>
                 <FaStickyNote className={styles.fa}/>
                 <span className={styles.label}>Create Task</span>
             </button>

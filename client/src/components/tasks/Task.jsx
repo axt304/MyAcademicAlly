@@ -9,6 +9,7 @@ const Task = ({task}) => {
   const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
   const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
   const isDescriptionFormOpen = useStoreState((state) => state.isDescriptionFormOpen)
+  const isAddProjectFormOpen = useStoreState((state) => state.isAddProjectFormOpen)
   const setIsDescriptionFormOpen = useStoreActions((actions) => actions.setIsDescriptionFormOpen)
   const setTaskName = useStoreActions((actions) => actions.setTaskName)
   const setTaskDescription = useStoreActions((actions) => actions.setTaskDescription)
@@ -25,7 +26,7 @@ const Task = ({task}) => {
         <FaBook 
             className={`${styles.taskIcons} ${styles.taskIconsHover}`}
             onClick={() => {
-                if (!isAddFormOpen && !isEditFormOpen) {
+                if (!isAddFormOpen && !isEditFormOpen && !isAddProjectFormOpen) {
                     setIsDescriptionFormOpen(!isDescriptionFormOpen)
                     setTaskName(task.name)
                     setTaskDescription(task.description)
@@ -36,7 +37,7 @@ const Task = ({task}) => {
         <FaEdit 
             className={`${styles.taskIcons} ${styles.taskIconsHover}`}
             onClick={() => {
-                if (!isAddFormOpen && !isDescriptionFormOpen) {
+                if (!isAddFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen) {
                     setIsEditFormOpen(!isEditFormOpen)
                     setEditTask(task) 
                 }

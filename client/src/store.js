@@ -18,6 +18,18 @@ export default createStore({
     setTaskDate: action((state, payload) => {
         state.taskDate = payload
     }),
+    projects: [],
+    setProjects: action((state, payload) => {
+        state.projects = payload
+    }),
+    projectName: '',
+    setProjectName: action((state, payload) => {
+        state.projectName = payload
+    }),
+    projectColor: '#000000',
+    setProjectColor: action((state, payload) => {
+        state.projectColor = payload
+    }),
     isAddFormOpen: false,
     setIsAddFormOpen: action((state, payload) => {
         state.isAddFormOpen = payload
@@ -29,6 +41,10 @@ export default createStore({
     isDescriptionFormOpen: false,
     setIsDescriptionFormOpen: action((state, payload) => {
         state.isDescriptionFormOpen = payload
+    }),
+    isAddProjectFormOpen: false,
+    setIsAddProjectFormOpen: action((state, payload) => {
+        state.isAddProjectFormOpen = payload
     }),
     editTask: {'id': 0, 'name': '', 'description': '', 'due_date': '', 'is_checked': 0, 'user_id': 0, 'project_id': 0},
     setEditTask: action((state, payload) => {
