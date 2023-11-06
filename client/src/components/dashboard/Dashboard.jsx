@@ -4,11 +4,13 @@ import Sidebar from './Sidebar'
 import Panel from './Panel'
 import AddForm from './AddForm'
 import EditForm from './EditForm'
+import DescriptionForm from './DescriptionForm'
 import { useStoreState, useStoreActions } from 'easy-peasy'
 
 const Dashboard = () => {
   const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
   const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
+  const isDescriptionFormOpen = useStoreState((state) => state.isDescriptionFormOpen)
   const setTaskName = useStoreActions((actions) => actions.setTaskName)
   const setTaskDescription = useStoreActions((actions) => actions.setTaskDescription)
   const setTaskDate = useStoreActions((actions) => actions.setTaskDate)
@@ -28,8 +30,9 @@ const Dashboard = () => {
     <>
       <Sidebar />
       <Panel />
-      {isAddFormOpen && !isEditFormOpen && <AddForm />}
-      {isEditFormOpen && !isAddFormOpen && <EditForm />}
+      {isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen && <AddForm />}
+      {isEditFormOpen && !isAddFormOpen && !isDescriptionFormOpen && <EditForm />}
+      {isDescriptionFormOpen && !isAddFormOpen && !isEditFormOpen && <DescriptionForm />}
     </>
   )
 }

@@ -8,12 +8,13 @@ const Panel = () => {
   const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
   const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
   const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
+  const isDescriptionFormOpen = useStoreState((state) => state.isDescriptionFormOpen)
 
   return (
     <div id={styles.panel}>
       <header className={styles.header}>
         <span>Dashboard</span>
-        <FaPlus className={styles.dashboardAdd} onClick={() => {if (!isEditFormOpen) setIsAddFormOpen(!isAddFormOpen)}}/>
+        <FaPlus className={styles.dashboardAdd} onClick={() => {if (!isEditFormOpen && !isDescriptionFormOpen) setIsAddFormOpen(!isAddFormOpen)}}/>
       </header>
 
       <main className={styles.main}>
