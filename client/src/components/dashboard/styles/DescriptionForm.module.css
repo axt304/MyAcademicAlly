@@ -1,0 +1,103 @@
+.descriptionForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 500px;
+    top: 50%;
+    left: 60%;
+    transform: translate(-60%, -50%);
+    background-color: rgb(63, 18, 18);
+    width: 40%;
+    border: solid;
+    border-radius: 20px;
+    font-size: 24px;
+}
+
+#title {
+    position: absolute;
+    top: 0;
+    margin: 20px 10px;
+    color: yellow;
+    font-size: 28px;
+}
+
+.descriptionForm label {
+    color: pink;
+    font-weight: bold;
+    margin: 10px;
+    word-break: break-all;
+}
+
+.descriptionForm button {
+    position: absolute;
+    bottom: 0;
+    font-size: 16px;
+    margin: 20px auto;
+    width: auto;
+    background-color: orange;
+    border-style: none;
+    transition: background-color 0.5s ease-in-out;
+    -webkit-transition: background-color 0.5s ease-in-out;
+	-moz-transition: background-color 0.5s ease-in-out;
+	-ms-transition: background-color 0.5s ease-in-out;
+	-o-transition: background-color 0.5s ease-in-out;
+}
+
+.descriptionForm button:hover{
+    background-color: rgb(255, 255, 50);
+}
+
+@media (min-width: 1201px) and (max-width: 1600px) {
+    .descriptionForm {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .descriptionForm {
+        transform: translate(-50%, -50%);
+    }
+    #title {
+        font-size: 24px;
+    }
+    .descriptionForm label {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .descriptionForm {
+        width: 50%;
+        transform: translate(-45%, -50%);
+    }
+    #title {
+        font-size: 24px;
+    }
+    .descriptionForm label {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .descriptionForm {
+        height: 400px;
+        width: 280px;
+        transform: translate(-54%, -50%);
+    }
+
+    #title {
+        font-size: 20px;
+    }
+
+    .descriptionForm label {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .descriptionForm {
+       width: 240px;
+    }
+}
