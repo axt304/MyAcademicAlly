@@ -8,6 +8,10 @@ const Task = ({task}) => {
   const deleteTask = useStoreActions((actions) => actions.deleteTask)
   const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
   const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
+  const isDescriptionFormOpen = useStoreState((state) => state.isDescriptionFormOpen)
+  const setIsDescriptionFormOpen = useStoreActions((actions) => actions.setIsDescriptionFormOpen)
+  const setTaskName = useStoreActions((actions) => actions.setTaskName)
+  const setTaskDescription = useStoreActions((actions) => actions.setTaskDescription)
   const setIsEditFormOpen = useStoreActions((actions) => actions.setIsEditFormOpen)
   const setEditTask = useStoreActions((actions) => actions.setEditTask)
 
@@ -20,12 +24,23 @@ const Task = ({task}) => {
 
         <FaBook 
             className={`${styles.taskIcons} ${styles.taskIconsHover}`}
-            onClick={() => console.log(task.description)}
+            onClick={() => {
+                if (!isAddFormOpen && !isEditFormOpen) {
+                    setIsDescriptionFormOpen(!isDescriptionFormOpen)
+                    setTaskName(task.name)
+                    setTaskDescription(task.description)
+                }
+            }}
         />
 
         <FaEdit 
             className={`${styles.taskIcons} ${styles.taskIconsHover}`}
-            onClick={() => {if (!isAddFormOpen) setIsEditFormOpen(!isEditFormOpen); setEditTask(task) }}
+            onClick={() => {
+                if (!isAddFormOpen && !isDescriptionFormOpen) {
+                    setIsEditFormOpen(!isEditFormOpen)
+                    setEditTask(task) 
+                }
+            }}
         />
 
         <FaTrash 
