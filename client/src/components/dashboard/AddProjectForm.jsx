@@ -7,9 +7,10 @@ const AddProjectForm = () => {
   const setProjectName = useStoreActions((actions) => actions.setProjectName)
   const setProjectColor = useStoreActions((actions) => actions.setProjectColor)
   const setIsAddProjectFormOpen = useStoreActions((actions) => actions.setIsAddProjectFormOpen)
+  const addProject = useStoreActions((actions) => actions.addProject)
 
   return (
-    <form className={styles.addProject} onSubmit={(e) => {e.preventDefault(); console.log(1)}}>
+    <form className={styles.addProject} onSubmit={(e) => addProject(e)}>
         <label htmlFor='addProject'>Add Project</label>
         <input 
             className={styles.nameInput}

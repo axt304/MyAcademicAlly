@@ -129,5 +129,30 @@ export default createStore({
             const { setEditTask } = helpers.getStoreActions()
             setEditTask({'id': 0, 'name': '', 'description': '', 'due_date': '', 'is_checked': 0, 'user_id': 0, 'project_id': 0})
         }
+    }),
+    fetchProjects: thunk(async (actions, e, helpers) => {
+        try {
+            const { setProjects } = helpers.getStoreActions()
+            const response = await api.get('/api/allprojects')
+            setProjects(response.data)
+          } catch (err) {
+            console.log(err)
+          } finally {
+            console.log(1)
+        }
+    }),
+    addProject: thunk(async (actions, e, helpers) => {
+        e.preventDefault()
+        try {
+            const { projectName, projectColor } = helpers.getState()
+            const { setIsAddProjectFormOpen, fetchProjects } = helpers.getStoreActions()
+            const newProject = {'name': projectName, 'color': projectColor, 'user_id': 21}
+            setIsAddProjectFormOpen(false)
+            const response = await api.post('/api/projects', newProject)
+            console.log(response.data)
+            fetchProjects()
+        } catch (err) {
+            console.log(`Error: ${err.message}`)
+        } 
     })
 })

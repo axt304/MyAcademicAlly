@@ -17,6 +17,7 @@ const Dashboard = () => {
   const setTaskDescription = useStoreActions((actions) => actions.setTaskDescription)
   const setTaskDate = useStoreActions((actions) => actions.setTaskDate)
   const fetchTasks = useStoreActions((actions) => actions.fetchTasks)
+  const fetchProjects = useStoreActions((actions) => actions.fetchProjects)
 
   useEffect(() => {
     setTaskName('')
@@ -26,6 +27,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchTasks()
+    fetchProjects()
   }, [])
 
   return (
