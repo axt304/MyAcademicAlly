@@ -1,0 +1,150 @@
+.projectList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin-right: -50px;
+}
+
+.project {
+    margin: 0 0;
+    margin-right: 50px;
+    border-radius: 10px;
+}
+
+.folder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 260px;
+    height: 225px;
+    cursor: pointer;
+    margin: 30px auto;
+    padding: 0 10px;
+    position: relative;
+    color: white;
+    background-color: #708090;
+    font-size: 28px;
+    font-weight: bold;
+    word-break: break-all;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    border-radius: 0 6px 6px 6px;
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.59);
+}
+
+.folder:before {
+    content: '';
+    width: 50%;
+    height: 12px;
+    border-radius: 0 20px 0 0;
+    background-color: #708090;
+    position: absolute;
+    top: -12px;
+    left: 0px;
+}
+
+.projectIconsDiv {
+    cursor: default;
+    background-color: #708090;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    padding: 2px;
+}
+
+.projectIcons {
+    cursor: pointer;
+    margin: 0 10px;
+    font-size: 24px;
+    color: rgba(26, 26, 26, 0.5);
+    transition: color 0.5s ease-in-out;
+    -webkit-transition: color 0.5s ease-in-out;
+	-moz-transition: color 0.5s ease-in-out;
+	-ms-transition: color 0.5s ease-in-out;
+	-o-transition: color 0.5s ease-in-out;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.projectIcons:hover {
+    color: beige;
+}
+
+@media (max-width: 1280px) {
+    .projectList {
+        margin-right: -30px;
+    }
+    .project {
+        margin-right: 30px;
+    }
+    .folder {
+        font-size: 20px;
+        width: 180px;
+        height: 150px;
+    }
+    .projectIconsDiv {
+        padding: 0;
+    }
+    .projectIcons {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    .projectList {
+        margin-right: -30px;
+    }
+    .project {
+        margin-right: 30px;
+    }
+    .folder {
+        font-size: 18px;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (min-width: 650px) and (max-width: 991px) {
+    .projectList {
+        margin-right: 0;
+    }
+    .folder {
+        font-size: 16px;
+        width: 130px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .projectList {
+        flex-direction: column;
+        margin-right: 0;
+    }
+    .project {
+        margin: 0 auto;
+    }
+    .folder {
+        font-size: 20px;
+        width: 250px;
+        height: 150px;
+    }
+    .project {
+        padding: 5px;
+    }
+
+    .projectIconsDiv {
+        width: 40%;
+    }
+    .projectIcons {
+        font-size: 20px;
+        margin: 0 5px;
+    }
+}

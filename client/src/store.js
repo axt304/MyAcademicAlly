@@ -46,9 +46,17 @@ export default createStore({
     setIsAddProjectFormOpen: action((state, payload) => {
         state.isAddProjectFormOpen = payload
     }),
+    isProjectView: false,
+    setIsProjectView: action((state, payload) => {
+        state.isProjectView = payload
+    }),
     editTask: {'id': 0, 'name': '', 'description': '', 'due_date': '', 'is_checked': 0, 'user_id': 0, 'project_id': 0},
     setEditTask: action((state, payload) => {
         state.editTask = payload
+    }),
+    dashboardTitle: 'Dashboard',
+    setDashboardTitle: action((state, payload) => {
+        state.dashboardTitle = payload
     }),
     fetchTasks: thunk(async (actions, e, helpers) => {
         try {
