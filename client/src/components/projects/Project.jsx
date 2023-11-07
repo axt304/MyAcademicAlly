@@ -16,7 +16,10 @@ const Project = ({project}) => {
         <div 
             className={styles.folder} 
             style={{backgroundColor: project.color}} 
-            onClick={() => {
+            onClick={(e) => {
+                if (e.target.className !== "_folder_1bxyg_31") {
+                    return
+                }
                 setDashboardTitle(project.name)
                 setCurrentProject(project)
                 const newTasks = tasks.filter((task) => task.project_id === project.id)
