@@ -15,9 +15,16 @@ const Task = ({task}) => {
   const setTaskDescription = useStoreActions((actions) => actions.setTaskDescription)
   const setIsEditFormOpen = useStoreActions((actions) => actions.setIsEditFormOpen)
   const setEditTask = useStoreActions((actions) => actions.setEditTask)
+  const projects = useStoreState((state) => state.projects)
+
 
   return (
-    <li className={(task.is_checked) ? `${styles.task} ${styles.taskCompleted}` : `${styles.task}`}>
+    <li 
+        className={(task.is_checked) ? `${styles.task} ${styles.taskCompleted}` : `${styles.task}`} 
+        style={
+            (task.project_id && task.project_id !== 0) ? {borderColor: projects.filter(project => project.id === task.project_id)[0]['color']} : null
+        }
+    >
         <FaCheck 
             className={(task.is_checked) ? `${styles.taskIcons} ${styles.checked}` : `${styles.taskIcons} ${styles.unchecked}`} 
             onClick={() => checkTask(task.id)}
