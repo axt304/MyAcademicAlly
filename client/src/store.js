@@ -62,7 +62,9 @@ export default createStore({
         try {
             const { setTasks } = helpers.getStoreActions()
             const response = await api.get('/api/alltasks')
-            setTasks(response.data)
+            setTasks(response.data.sort(function(a, b) {
+                return a.due_date.localeCompare(b.due_date)
+            }))
           } catch (err) {
             console.log(err)
           } finally {
