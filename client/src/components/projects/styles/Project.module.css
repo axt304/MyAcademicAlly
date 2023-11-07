@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
-    margin-right: -50px;
+    /* margin-right: -50px; */
 }
 
 .project {
@@ -79,9 +79,9 @@
 }
 
 @media (max-width: 1280px) {
-    .projectList {
+    /* .projectList {
         margin-right: -30px;
-    }
+    } */
     .project {
         margin-right: 30px;
     }
@@ -99,9 +99,9 @@
 }
 
 @media (max-width: 992px) {
-    .projectList {
+    /* .projectList {
         margin-right: -30px;
-    }
+    } */
     .project {
         margin-right: 30px;
     }

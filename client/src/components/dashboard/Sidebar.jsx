@@ -13,6 +13,9 @@ const Sidebar = () => {
   const isProjectView = useStoreState((state) => state.isProjectView)
   const setIsProjectView = useStoreActions((actions) => actions.setIsProjectView)
   const setDashboardTitle = useStoreActions((actions) => actions.setDashboardTitle)
+  const setCurrentProject = useStoreActions((actions) => actions.setCurrentProject)
+  const tasks = useStoreState((state) => state.tasks)
+  const setFilteredTasks = useStoreActions((actions) => actions.setFilteredTasks)
 
   return (
     <div id={styles.sidebar}>
@@ -22,14 +25,14 @@ const Sidebar = () => {
         </li>
         
         <li>
-            <button onClick={() => {setDashboardTitle('Dashboard'); setIsProjectView(false)}}>
+            <button onClick={() => {setDashboardTitle('Dashboard'); setIsProjectView(false); setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0}); setFilteredTasks(tasks)}}>
                 <FaTachometerAlt className={styles.fa}/>
                 <span className={styles.label}>Dashboard</span>
             </button>
         </li>
 
         <li>
-            <button onClick={() => {setDashboardTitle('Projects'); setIsProjectView(true)}}>
+            <button onClick={() => {setDashboardTitle('Projects'); setIsProjectView(true); setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0})}}>
                 <FaFolder className={styles.fa}/>
                 <span className={styles.label}>Projects</span>
             </button>

@@ -6,6 +6,10 @@ export default createStore({
     setTasks: action((state, payload) => {
         state.tasks = payload
     }),
+    filteredTasks: [],
+    setFilteredTasks: action((state, payload) => {
+        state.filteredTasks = payload
+    }),
     taskName: '',
     setTaskName: action((state, payload) => {
         state.taskName = payload
@@ -58,6 +62,10 @@ export default createStore({
     setDashboardTitle: action((state, payload) => {
         state.dashboardTitle = payload
     }),
+    currentProject: {'id': 0, 'name': '', 'color': '', 'user_id': 0},
+    setCurrentProject: action((state, payload) => {
+        state.currentProject = payload
+    }),
     fetchTasks: thunk(async (actions, e, helpers) => {
         try {
             const { setTasks } = helpers.getStoreActions()
@@ -65,18 +73,19 @@ export default createStore({
             setTasks(response.data.sort(function(a, b) {
                 return a.due_date.localeCompare(b.due_date)
             }))
-          } catch (err) {
+        } catch (err) {
             console.log(err)
-          } finally {
-            console.log(1)
+        } finally {
+            const { filterTasksByProject } = helpers.getStoreActions()
+            filterTasksByProject()
         }
     }),
     addTask: thunk(async (actions, e, helpers) => {
         e.preventDefault()
         try {
-            const { tasks, taskName, taskDescription, taskDate } = helpers.getState()
+            const { currentProject, taskName, taskDescription, taskDate } = helpers.getState()
             const { setIsAddFormOpen, fetchTasks } = helpers.getStoreActions()
-            const newTask = {'name': taskName, 'description': taskDescription, 'due_date': taskDate, 'is_checked': 0, 'user_id': 11, 'project_id': 21}
+            const newTask = {'name': taskName, 'description': taskDescription, 'due_date': taskDate, 'is_checked': 0, 'user_id': 11, 'project_id': currentProject['id']}
             setIsAddFormOpen(false)
             const response = await api.post('/api/tasks', newTask)
             console.log(response.data)
@@ -88,9 +97,10 @@ export default createStore({
     checkTask: thunk(async (actions, id, helpers) => {
         try {
             const { tasks } = helpers.getState()
-            const { setTasks } = helpers.getStoreActions()
+            const { setTasks, filterTasksByProject } = helpers.getStoreActions()
             const newTasks = tasks.map(task => task.id === id ? {...task, is_checked: !task.is_checked} : task)
             setTasks(newTasks)
+            filterTasksByProject()
             const newTask = newTasks.filter(task => task.id === id)[0]
       
             if (newTask['is_checked'] === 0 || newTask['is_checked'] === false) {
@@ -108,9 +118,10 @@ export default createStore({
     deleteTask: thunk(async (actions, id, helpers) => {
         try {
             const { tasks } = helpers.getState()
-            const { setTasks } = helpers.getStoreActions()
+            const { setTasks, filterTasksByProject } = helpers.getStoreActions()
             const newTasks = tasks.filter(task => task.id !== id)
             setTasks(newTasks)
+            filterTasksByProject()
             const response = await api.delete(`/api/tasks/${id}`)
         } catch (err) {
             console.log(`Error: ${err.message}`)
@@ -120,9 +131,10 @@ export default createStore({
         e.preventDefault()
         try {
             const { tasks, editTask } = helpers.getState()
-            const { setTasks, setIsEditFormOpen } = helpers.getStoreActions()
+            const { setTasks, filterTasksByProject, setIsEditFormOpen } = helpers.getStoreActions()
             const newTasks = tasks.map(task => task.id === editTask.id ? {...task, 'name': editTask.name, 'description': editTask.description, 'due_date': editTask.due_date, 'is_checked': editTask.is_checked} : task)
             setTasks(newTasks)
+            filterTasksByProject()
             setIsEditFormOpen(false)
             const newTask = newTasks.filter(task => task.id === editTask.id)[0]
 
@@ -164,5 +176,20 @@ export default createStore({
         } catch (err) {
             console.log(`Error: ${err.message}`)
         } 
+    }),
+    filterTasksByProject: thunk(async (actions, e, helpers) => {
+        try {
+            const { tasks, currentProject } = helpers.getState()
+            const { setFilteredTasks } = helpers.getStoreActions()
+
+            if (currentProject['id'] !== 0) {
+                const newTasks = tasks.filter((task) => task.project_id === currentProject['id'])
+                setFilteredTasks(newTasks)
+            } else {
+                setFilteredTasks(tasks)
+            }
+        } catch (err) {
+            console.log(`Error: ${err.message}`)
+        }
     })
 })
