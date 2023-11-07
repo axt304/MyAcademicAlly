@@ -4,11 +4,11 @@ import styles from './styles/Task.module.css'
 import { useStoreState } from 'easy-peasy'
 
 const TaskList = () => {
-  const tasks = useStoreState((state) => state.tasks)
+  const filteredTasks = useStoreState((state) => state.filteredTasks)  
 
   return (
     <ul className={styles.taskList}>
-        {tasks.map(task => 
+        {filteredTasks.map(task => 
             <Task 
                 key={task.id}
                 task={task}

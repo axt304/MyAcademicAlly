@@ -72,6 +72,7 @@
 @media (max-width: 1280px) {
     .header {
         width: auto;
+        word-break: break-all;
     }
 
     .main {
@@ -83,6 +84,7 @@
 @media (min-width: 992px) and (max-width: 1200px){
     .header {
         width: auto;
+        word-break: break-all;
     }
 
     .main {
@@ -100,6 +102,7 @@
     .header {
         width: auto;
         height: 50px;
+        word-break: break-all;
     }
 
     .main {
