@@ -4,17 +4,21 @@ import styles from './styles/Sidebar.module.css'
 import { useStoreState, useStoreActions, action } from 'easy-peasy';
 
 const Sidebar = () => {
+  //state
   const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
-  const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
   const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
   const isDescriptionFormOpen = useStoreState((state) => state.isDescriptionFormOpen)
   const isAddProjectFormOpen = useStoreState((state) => state.isAddProjectFormOpen)
-  const setIsAddProjectFormOpen = useStoreActions((actions) => actions.setIsAddProjectFormOpen)
+  const isEditProjectFormOpen = useStoreState((state) => state.isEditProjectFormOpen)
   const isProjectView = useStoreState((state) => state.isProjectView)
+  const tasks = useStoreState((state) => state.tasks)
+
+  //actions
+  const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
+  const setIsAddProjectFormOpen = useStoreActions((actions) => actions.setIsAddProjectFormOpen)
   const setIsProjectView = useStoreActions((actions) => actions.setIsProjectView)
   const setDashboardTitle = useStoreActions((actions) => actions.setDashboardTitle)
   const setCurrentProject = useStoreActions((actions) => actions.setCurrentProject)
-  const tasks = useStoreState((state) => state.tasks)
   const setFilteredTasks = useStoreActions((actions) => actions.setFilteredTasks)
 
   return (
@@ -25,14 +29,27 @@ const Sidebar = () => {
         </li>
         
         <li>
-            <button onClick={() => {setDashboardTitle('Dashboard'); setIsProjectView(false); setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0}); setFilteredTasks(tasks)}}>
+            <button onClick={() => {
+                if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen &&!isEditProjectFormOpen) {
+                    setDashboardTitle('Dashboard')
+                    setIsProjectView(false)
+                    setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0})
+                    setFilteredTasks(tasks)
+                }
+            }}>
                 <FaTachometerAlt className={styles.fa}/>
                 <span className={styles.label}>Dashboard</span>
             </button>
         </li>
 
         <li>
-            <button onClick={() => {setDashboardTitle('Projects'); setIsProjectView(true); setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0})}}>
+            <button onClick={() => {
+                if (!isAddProjectFormOpen && !isEditProjectFormOpen) {
+                    setDashboardTitle('Projects')
+                    setIsProjectView(true)
+                    setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0})
+                }
+            }}>
                 <FaFolder className={styles.fa}/>
                 <span className={styles.label}>Projects</span>
             </button>
@@ -40,7 +57,7 @@ const Sidebar = () => {
 
         {isProjectView &&
             <li>
-                <button onClick={() => {if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen) setIsAddProjectFormOpen(!isAddProjectFormOpen)}}>
+                <button onClick={() => {if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen &&!isEditProjectFormOpen) setIsAddProjectFormOpen(!isAddProjectFormOpen)}}>
                     <FaFolderPlus className={styles.fa}/>
                     <span className={styles.label}>Create Project</span>
                 </button>

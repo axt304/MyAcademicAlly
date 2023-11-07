@@ -54,6 +54,10 @@ export default createStore({
     setIsProjectView: action((state, payload) => {
         state.isProjectView = payload
     }),
+    isEditProjectFormOpen: false,
+    setIsEditProjectFormOpen: action((state, payload) => {
+        state.isEditProjectFormOpen = payload
+    }),
     editTask: {'id': 0, 'name': '', 'description': '', 'due_date': '', 'is_checked': 0, 'user_id': 0, 'project_id': 0},
     setEditTask: action((state, payload) => {
         state.editTask = payload
@@ -176,6 +180,40 @@ export default createStore({
         } catch (err) {
             console.log(`Error: ${err.message}`)
         } 
+    }),
+    deleteProject: thunk(async (actions, id, helpers) => {
+        try {
+            const { tasks, projects } = helpers.getState()
+            const { setTasks, setFilteredTasks, setProjects} = helpers.getStoreActions()
+
+            const newProjects = projects.filter(project => project.id !== id)
+            setProjects(newProjects)
+
+            const newTasks = tasks.filter(task => task.project_id !== id)
+            setTasks(newTasks)
+            setFilteredTasks(newTasks)
+
+            // const response = await api.delete(`/api/projects/${id}`)
+        } catch (err) {
+            console.log(`Error: ${err.message}`)
+        } 
+    }),
+    updateProject: thunk(async (actions, e, helpers) => {
+        e.preventDefault()
+        try {
+            const { projects, currentProject } = helpers.getState()
+            const { setProjects, setIsEditProjectFormOpen } = helpers.getStoreActions()
+            const newProjects = projects.map(project => project.id === currentProject.id ? {...project, 'name': currentProject.name, 'color': currentProject.color} : project)
+            setProjects(newProjects)
+            setIsEditProjectFormOpen(false)
+            const newProject = newProjects.filter(project => project.id === currentProject.id)[0]
+            const response = await api.put(`/api/projects/${currentProject.id}`, newProject)
+        } catch (err) {
+            console.log(`Error: ${err.message}`)
+        } finally {
+            const { setCurrentProject } = helpers.getStoreActions()
+            setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0})
+        }
     }),
     filterTasksByProject: thunk(async (actions, e, helpers) => {
         try {

@@ -5,11 +5,18 @@ import { useStoreState, useStoreActions } from 'easy-peasy';
 
 
 const Project = ({project}) => {
+  //state
+  const isAddProjectFormOpen = useStoreState((state) => state.isAddProjectFormOpen)
+  const isEditProjectFormOpen = useStoreState((state) => state.isEditProjectFormOpen)
+  const tasks = useStoreState((state) => state.tasks)
+
+  //actions
   const setDashboardTitle = useStoreActions((actions) => actions.setDashboardTitle)
   const setIsProjectView = useStoreActions((actions) => actions.setIsProjectView)
   const setCurrentProject = useStoreActions((actions) => actions.setCurrentProject)
-  const tasks = useStoreState((state) => state.tasks)
+  const setIsEditProjectFormOpen = useStoreActions((actions) => actions.setIsEditProjectFormOpen)
   const setFilteredTasks = useStoreActions((actions) => actions.setFilteredTasks)
+  const deleteProject = useStoreActions((actions) => actions.deleteProject)
 
   return (
     <li className={styles.project}>
@@ -17,6 +24,9 @@ const Project = ({project}) => {
             className={styles.folder} 
             style={{backgroundColor: project.color}} 
             onClick={(e) => {
+                if (isAddProjectFormOpen || isEditProjectFormOpen) {
+                    return
+                }
                 if (e.target.className !== "_folder_1bxyg_31") {
                     return
                 }
@@ -29,8 +39,8 @@ const Project = ({project}) => {
         >
             {project.name}
             <div className={styles.projectIconsDiv}>
-                <FaEdit className={styles.projectIcons} onClick={() => console.log('Edit: ' + project.name)}/>
-                <FaTrash className={styles.projectIcons} onClick={() => console.log('Delete: ' + project.name)}/>
+                <FaEdit className={styles.projectIcons} onClick={() => {if (!isAddProjectFormOpen) setCurrentProject(project); setIsEditProjectFormOpen(!isEditProjectFormOpen)}}/>
+                <FaTrash className={styles.projectIcons} onClick={() => {if (!isAddProjectFormOpen && !isEditProjectFormOpen) deleteProject(project.id)}}/>
             </div>
         </div>
     </li>
