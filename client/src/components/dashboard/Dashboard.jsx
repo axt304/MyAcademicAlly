@@ -26,8 +26,8 @@ const Dashboard = () => {
   }, [isAddFormOpen])
 
   useEffect(() => {
-    fetchTasks()
     fetchProjects()
+    fetchTasks()
   }, [])
 
   return (
