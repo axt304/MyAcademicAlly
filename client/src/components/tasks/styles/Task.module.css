@@ -11,6 +11,9 @@
     background-color: rgba(181, 43, 11, 0.5);
     margin: 20px 0;
     border-radius: 10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent;
     transition: background-color 0.5s ease-in-out;
     -webkit-transition: background-color 0.5s ease-in-out;
 	-moz-transition: background-color 0.5s ease-in-out;
@@ -75,6 +78,7 @@
 
 @media (max-width: 480px) {
     .task {
+        border-width: 3px;
         padding: 5px;
     }
 
