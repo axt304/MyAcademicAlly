@@ -202,7 +202,7 @@ export default createStore({
             setTasks(newTasks)
             setFilteredTasks(newTasks)
 
-            // const response = await api.delete(`/api/projects/${id}`)
+            const response = await api.delete(`/api/projects/${id}`)
         } catch (err) {
             console.log(`Error: ${err.message}`)
         } 
