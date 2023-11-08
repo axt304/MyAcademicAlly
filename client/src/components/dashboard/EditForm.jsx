@@ -14,6 +14,7 @@ const EditForm = () => {
         <input 
             type="text"
             placeholder='Name'
+            maxLength={45}
             value={editTask.name}
             required
             autoFocus
@@ -24,6 +25,7 @@ const EditForm = () => {
         <input 
             type="text"
             placeholder='Description'
+            maxLength={256}
             value={editTask.description}
             required
             autoComplete='off'
@@ -53,7 +55,7 @@ const EditForm = () => {
             <button
                 type='button'
                 aria-label='Cancel Edit'
-                onClick={() => setIsEditFormOpen(false)}
+                onClick={() => {setIsEditFormOpen(false); setEditTask({'id': 0, 'name': '', 'description': '', 'due_date': '', 'is_checked': 0, 'user_id': 0, 'project_id': 0})}}
             >Cancel</button>
         </div>
     </form>

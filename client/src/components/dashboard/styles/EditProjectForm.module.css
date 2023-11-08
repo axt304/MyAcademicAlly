@@ -1,15 +1,15 @@
-.addForm {
+.editProject {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: fixed;
-    height: 500px;
+    height: 400px;
     top: 50%;
     left: 60%;
     transform: translate(-60%, -50%);
-    background-color: rgba(120, 50, 100, 1);
-    width: 40%;
+    background-color: rgb(82, 19, 19);
+    width: 30%;
     border: solid;
     border-radius: 20px;
     font-size: 24px;
@@ -18,15 +18,19 @@
 .buttons {
     display: flex;
     flex-direction: row;
+    position: absolute;
+    bottom: 0;
 }
 
-.addForm label {
-    color: pink;
+.editProject label {
+    color: gold;
     font-weight: bold;
     margin: 30px;
+    position: absolute;
+    top: 0;
 }
 
-.addForm input {
+.nameInput {
     width: 70%;
     margin: 15px 10px;
     border-radius: 10px;
@@ -37,7 +41,37 @@
     border-style: none;
 }
 
-.addForm button {
+.colorSpan {
+    display: flex;
+    font-weight: bold;
+    width: auto;
+    margin: 15px 10px;
+    font-size: 24px;
+}
+
+.color {
+    margin-left: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+.color::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+.color::-moz-color-swatch {
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+.editProject button {
     font-size: 16px;
     margin: 30px 10px;
     width: 100px;
@@ -50,39 +84,46 @@
 	-o-transition: background-color 0.5s ease-in-out;
 }
 
-.addForm button:hover{
+.editProject button:hover{
     background-color: rgb(255, 255, 50);
 }
 
-@media (min-width: 1201px) and (max-width: 1600px) {
-    .addForm {
+@media (min-width: 1201px) and (max-width: 1400px) {
+    .editProject {
         transform: translate(-50%, -50%);
     }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .addForm {
-        transform: translate(-50%, -50%);
+    .editProject {
+        transform: translate(-40%, -50%);
+    }
+    .nameInput {
+        width: 80%;
     }
 }
 
 @media (max-width: 991px) {
-    .addForm {
+    .editProject {
         width: 50%;
-        transform: translate(-45%, -50%);
+        transform: translate(-50%, -50%);
     }
 }
 
 @media (max-width: 480px) {
-    .addForm {
+    .editProject {
         height: 400px;
         width: 280px;
         transform: translate(-54%, -50%);
     }
+
+    .nameInput {
+        width: 80%;
+    }
 }
 
 @media (max-width: 320px) {
-    .addForm {
+    .editProject {
        width: 240px;
     }
 }
