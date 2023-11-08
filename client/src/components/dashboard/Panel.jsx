@@ -6,13 +6,17 @@ import { useStoreState, useStoreActions } from 'easy-peasy'
 import ProjectList from '../projects/ProjectList'
 
 const Panel = () => {
+  //state
   const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
-  const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
   const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
   const isDescriptionFormOpen = useStoreState((state) => state.isDescriptionFormOpen)
   const isAddProjectFormOpen = useStoreState((state) => state.isAddProjectFormOpen)
+  const isEditProjectFormOpen = useStoreState((state) => state.isEditProjectFormOpen)
   const isProjectView = useStoreState((state) => state.isProjectView)
   const dashboardTitle = useStoreState((state) => state.dashboardTitle)
+
+  //actions
+  const setIsAddFormOpen = useStoreActions((actions) => actions.setIsAddFormOpen)
   const setIsAddProjectFormOpen = useStoreActions((actions) => actions.setIsAddProjectFormOpen)
 
   return (
@@ -22,9 +26,9 @@ const Panel = () => {
         <FaPlus 
           className={styles.dashboardAdd} 
           onClick={() => {
-            if (!isEditFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen && !isProjectView) {
+            if (!isEditFormOpen && !isDescriptionFormOpen && !isAddFormOpen && !isProjectView) {
               setIsAddFormOpen(!isAddFormOpen) 
-            } else if (!isEditFormOpen && !isDescriptionFormOpen && !isAddFormOpen && isProjectView) {
+            } else if (!isEditProjectFormOpen && !isAddProjectFormOpen && isProjectView) {
               setIsAddProjectFormOpen(!isAddProjectFormOpen)
             }
           }}

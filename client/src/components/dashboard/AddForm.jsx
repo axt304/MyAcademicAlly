@@ -15,6 +15,7 @@ const AddForm = () => {
         <input 
             type="text"
             placeholder="Name"
+            maxLength={45}
             required
             autoFocus
             autoComplete='off'
@@ -24,6 +25,7 @@ const AddForm = () => {
         <input 
             type="text"
             placeholder="Description"
+            maxLength={256}
             required
             autoComplete='off'
             onClick={(e) => e.target.select()}
@@ -46,7 +48,7 @@ const AddForm = () => {
             <button
                 type='button'
                 aria-label='Cancel Add'
-                onClick={() => setIsAddFormOpen(false)}
+                onClick={() => {setIsAddFormOpen(false); setTaskName(''); setTaskDescription(''); setTaskDate('')}}
             >Cancel</button>
         </div>
     </form>
