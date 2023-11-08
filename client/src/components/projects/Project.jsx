@@ -27,7 +27,10 @@ const Project = ({project}) => {
                 if (isAddProjectFormOpen || isEditProjectFormOpen) {
                     return
                 }
-                if (e.target.className !== "_folder_1bius_31") {
+                if ((typeof(e.target.className) !== 'string')) {
+                    return
+                }
+                if (!(e.target.className.includes('folder'))) {
                     return
                 }
                 setDashboardTitle(project.name)
