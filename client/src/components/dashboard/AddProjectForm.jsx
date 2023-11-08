@@ -16,6 +16,7 @@ const AddProjectForm = () => {
             className={styles.nameInput}
             type="text"
             placeholder="Name"
+            maxLength={45}
             required
             autoFocus
             autoComplete='off'
@@ -27,6 +28,7 @@ const AddProjectForm = () => {
             <input 
                 className={styles.color}
                 type="color"
+                maxLength={45}
                 required
                 autoComplete='off'
                 onClick={(e) => e.target.select()}

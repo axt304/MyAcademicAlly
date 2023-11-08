@@ -15,6 +15,7 @@ const EditProjectForm = () => {
             className={styles.nameInput}
             type="text"
             placeholder="Name"
+            maxLength={45}
             value={currentProject.name}
             required
             autoFocus
@@ -27,6 +28,7 @@ const EditProjectForm = () => {
             <input 
                 className={styles.color}
                 type="color"
+                maxLength={45}
                 value={currentProject.color}
                 required
                 autoComplete='off'
