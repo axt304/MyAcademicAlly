@@ -53,7 +53,7 @@ const EditForm = () => {
             <button
                 type='button'
                 aria-label='Cancel Edit'
-                onClick={() => setIsEditFormOpen(false)}
+                onClick={() => {setIsEditFormOpen(false); setEditTask({'id': 0, 'name': '', 'description': '', 'due_date': '', 'is_checked': 0, 'user_id': 0, 'project_id': 0})}}
             >Cancel</button>
         </div>
     </form>

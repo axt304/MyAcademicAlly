@@ -42,7 +42,7 @@ const AddProjectForm = () => {
             <button
                 type='button'
                 aria-label='Cancel Add'
-                onClick={() => {setIsAddProjectFormOpen(false); setProjectColor('#000000')}}
+                onClick={() => {setIsAddProjectFormOpen(false); setProjectName(''); setProjectColor('#000000')}}
             >Cancel</button>
         </div>
     </form>

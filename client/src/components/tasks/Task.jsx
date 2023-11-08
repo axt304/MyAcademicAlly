@@ -4,18 +4,20 @@ import styles from './styles/Task.module.css'
 import { useStoreState, useStoreActions } from 'easy-peasy';
 
 const Task = ({task}) => {
-  const checkTask = useStoreActions((actions) => actions.checkTask)
-  const deleteTask = useStoreActions((actions) => actions.deleteTask)
+  //state
   const isAddFormOpen = useStoreState((state) => state.isAddFormOpen)
   const isEditFormOpen = useStoreState((state) => state.isEditFormOpen)
   const isDescriptionFormOpen = useStoreState((state) => state.isDescriptionFormOpen)
-  const isAddProjectFormOpen = useStoreState((state) => state.isAddProjectFormOpen)
+  const projects = useStoreState((state) => state.projects)
+
+  //actions
+  const checkTask = useStoreActions((actions) => actions.checkTask)
+  const deleteTask = useStoreActions((actions) => actions.deleteTask)
   const setIsDescriptionFormOpen = useStoreActions((actions) => actions.setIsDescriptionFormOpen)
   const setTaskName = useStoreActions((actions) => actions.setTaskName)
   const setTaskDescription = useStoreActions((actions) => actions.setTaskDescription)
   const setIsEditFormOpen = useStoreActions((actions) => actions.setIsEditFormOpen)
   const setEditTask = useStoreActions((actions) => actions.setEditTask)
-  const projects = useStoreState((state) => state.projects)
 
 
   return (
@@ -27,13 +29,13 @@ const Task = ({task}) => {
     >
         <FaCheck 
             className={(task.is_checked) ? `${styles.taskIcons} ${styles.checked}` : `${styles.taskIcons} ${styles.unchecked}`} 
-            onClick={() => checkTask(task.id)}
+            onClick={() => {if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen) checkTask(task.id)}}
         />
 
         <FaBook 
             className={`${styles.taskIcons} ${styles.taskIconsHover}`}
             onClick={() => {
-                if (!isAddFormOpen && !isEditFormOpen && !isAddProjectFormOpen) {
+                if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen) {
                     setIsDescriptionFormOpen(!isDescriptionFormOpen)
                     setTaskName(task.name)
                     setTaskDescription(task.description)
@@ -44,7 +46,7 @@ const Task = ({task}) => {
         <FaEdit 
             className={`${styles.taskIcons} ${styles.taskIconsHover}`}
             onClick={() => {
-                if (!isAddFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen) {
+                if (!isAddFormOpen && !isDescriptionFormOpen && !isEditFormOpen) {
                     setIsEditFormOpen(!isEditFormOpen)
                     setEditTask(task) 
                 }
@@ -53,7 +55,7 @@ const Task = ({task}) => {
 
         <FaTrash 
             className={`${styles.taskIcons} ${styles.taskIconsHover}`}
-            onClick={() => deleteTask(task.id)}
+            onClick={() => {if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen) deleteTask(task.id)}}
         />
 
         <span

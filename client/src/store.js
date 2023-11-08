@@ -88,14 +88,19 @@ export default createStore({
         e.preventDefault()
         try {
             const { currentProject, taskName, taskDescription, taskDate } = helpers.getState()
-            const { setIsAddFormOpen, fetchTasks } = helpers.getStoreActions()
+            const { fetchTasks } = helpers.getStoreActions()
             const newTask = {'name': taskName, 'description': taskDescription, 'due_date': taskDate, 'is_checked': 0, 'user_id': 11, 'project_id': currentProject['id']}
-            setIsAddFormOpen(false)
             const response = await api.post('/api/tasks', newTask)
             console.log(response.data)
             fetchTasks()
         } catch (err) {
             console.log(`Error: ${err.message}`)
+        } finally {
+            const { setIsAddFormOpen, setTaskName, setTaskDescription, setTaskDate } = helpers.getStoreActions()
+            setIsAddFormOpen(false)
+            setTaskName('')
+            setTaskDescription('')
+            setTaskDate('')
         }
     }),
     checkTask: thunk(async (actions, id, helpers) => {
@@ -135,11 +140,10 @@ export default createStore({
         e.preventDefault()
         try {
             const { tasks, editTask } = helpers.getState()
-            const { setTasks, filterTasksByProject, setIsEditFormOpen } = helpers.getStoreActions()
+            const { setTasks, filterTasksByProject } = helpers.getStoreActions()
             const newTasks = tasks.map(task => task.id === editTask.id ? {...task, 'name': editTask.name, 'description': editTask.description, 'due_date': editTask.due_date, 'is_checked': editTask.is_checked} : task)
             setTasks(newTasks)
             filterTasksByProject()
-            setIsEditFormOpen(false)
             const newTask = newTasks.filter(task => task.id === editTask.id)[0]
 
             if (newTask['is_checked'] === 0 || newTask['is_checked'] === false) {
@@ -152,7 +156,8 @@ export default createStore({
         } catch (err) {
             console.log(`Error: ${err.message}`)
         } finally {
-            const { setEditTask } = helpers.getStoreActions()
+            const { setIsEditFormOpen, setEditTask } = helpers.getStoreActions()
+            setIsEditFormOpen(false)
             setEditTask({'id': 0, 'name': '', 'description': '', 'due_date': '', 'is_checked': 0, 'user_id': 0, 'project_id': 0})
         }
     }),
@@ -171,15 +176,19 @@ export default createStore({
         e.preventDefault()
         try {
             const { projectName, projectColor } = helpers.getState()
-            const { setIsAddProjectFormOpen, fetchProjects } = helpers.getStoreActions()
+            const { fetchProjects } = helpers.getStoreActions()
             const newProject = {'name': projectName, 'color': projectColor, 'user_id': 21}
-            setIsAddProjectFormOpen(false)
             const response = await api.post('/api/projects', newProject)
             console.log(response.data)
             fetchProjects()
         } catch (err) {
             console.log(`Error: ${err.message}`)
-        } 
+        } finally {
+            const { setIsAddProjectFormOpen, setProjectName, setProjectColor } = helpers.getStoreActions()
+            setIsAddProjectFormOpen(false)
+            setProjectName('')
+            setProjectColor('#000000')
+        }
     }),
     deleteProject: thunk(async (actions, id, helpers) => {
         try {
@@ -202,16 +211,16 @@ export default createStore({
         e.preventDefault()
         try {
             const { projects, currentProject } = helpers.getState()
-            const { setProjects, setIsEditProjectFormOpen } = helpers.getStoreActions()
+            const { setProjects } = helpers.getStoreActions()
             const newProjects = projects.map(project => project.id === currentProject.id ? {...project, 'name': currentProject.name, 'color': currentProject.color} : project)
             setProjects(newProjects)
-            setIsEditProjectFormOpen(false)
             const newProject = newProjects.filter(project => project.id === currentProject.id)[0]
             const response = await api.put(`/api/projects/${currentProject.id}`, newProject)
         } catch (err) {
             console.log(`Error: ${err.message}`)
         } finally {
-            const { setCurrentProject } = helpers.getStoreActions()
+            const { setIsEditProjectFormOpen, setCurrentProject } = helpers.getStoreActions()
+            setIsEditProjectFormOpen(false)
             setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0})
         }
     }),

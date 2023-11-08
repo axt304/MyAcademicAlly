@@ -26,9 +26,9 @@ const Panel = () => {
         <FaPlus 
           className={styles.dashboardAdd} 
           onClick={() => {
-            if (!isEditFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen && !isProjectView) {
+            if (!isEditFormOpen && !isDescriptionFormOpen && !isAddFormOpen && !isProjectView) {
               setIsAddFormOpen(!isAddFormOpen) 
-            } else if (!isEditFormOpen && !isDescriptionFormOpen && !isAddFormOpen && !isEditProjectFormOpen && isProjectView) {
+            } else if (!isEditProjectFormOpen && !isAddProjectFormOpen && isProjectView) {
               setIsAddProjectFormOpen(!isAddProjectFormOpen)
             }
           }}

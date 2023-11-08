@@ -18,17 +18,8 @@ const Dashboard = () => {
   const isEditProjectFormOpen = useStoreState((state) => state.isEditProjectFormOpen)
 
   //actions
-  const setTaskName = useStoreActions((actions) => actions.setTaskName)
-  const setTaskDescription = useStoreActions((actions) => actions.setTaskDescription)
-  const setTaskDate = useStoreActions((actions) => actions.setTaskDate)
   const fetchTasks = useStoreActions((actions) => actions.fetchTasks)
   const fetchProjects = useStoreActions((actions) => actions.fetchProjects)
-
-  useEffect(() => {
-    setTaskName('')
-    setTaskDescription('')
-    setTaskDate('')
-  }, [isAddFormOpen])
 
   useEffect(() => {
     fetchProjects().then(
@@ -40,11 +31,11 @@ const Dashboard = () => {
     <>
       <Sidebar />
       <Panel />
-      {isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen && <AddForm />}
-      {isEditFormOpen && !isAddFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen && <EditForm />}
-      {isDescriptionFormOpen && !isAddFormOpen && !isEditFormOpen && !isAddProjectFormOpen && <DescriptionForm />}
-      {isAddProjectFormOpen && !isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen && <AddProjectForm />}
-      {isEditProjectFormOpen && !isAddProjectFormOpen && <EditProjectForm />}
+      {isAddFormOpen && <AddForm />}
+      {isEditFormOpen && <EditForm />}
+      {isDescriptionFormOpen && <DescriptionForm />}
+      {isAddProjectFormOpen && <AddProjectForm />}
+      {isEditProjectFormOpen && <EditProjectForm />}
     </>
   )
 }

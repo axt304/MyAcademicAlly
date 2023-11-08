@@ -30,7 +30,7 @@ const Sidebar = () => {
         
         <li>
             <button onClick={() => {
-                if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen &&!isEditProjectFormOpen) {
+                if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen && !isEditProjectFormOpen) {
                     setDashboardTitle('Dashboard')
                     setIsProjectView(false)
                     setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0})
@@ -44,7 +44,7 @@ const Sidebar = () => {
 
         <li>
             <button onClick={() => {
-                if (!isAddProjectFormOpen && !isEditProjectFormOpen) {
+                if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen && !isEditProjectFormOpen) {
                     setDashboardTitle('Projects')
                     setIsProjectView(true)
                     setCurrentProject({'id': 0, 'name': '', 'color': '', 'user_id': 0})
@@ -57,7 +57,7 @@ const Sidebar = () => {
 
         {isProjectView &&
             <li>
-                <button onClick={() => {if (!isAddFormOpen && !isEditFormOpen && !isDescriptionFormOpen &&!isEditProjectFormOpen) setIsAddProjectFormOpen(!isAddProjectFormOpen)}}>
+                <button onClick={() => {if (!isEditProjectFormOpen && !isAddProjectFormOpen) setIsAddProjectFormOpen(!isAddProjectFormOpen)}}>
                     <FaFolderPlus className={styles.fa}/>
                     <span className={styles.label}>Create Project</span>
                 </button>
@@ -66,7 +66,7 @@ const Sidebar = () => {
 
         {!isProjectView &&
             <li>
-                <button onClick={() => {if (!isEditFormOpen && !isDescriptionFormOpen && !isAddProjectFormOpen) setIsAddFormOpen(!isAddFormOpen)}}>
+                <button onClick={() => {if (!isEditFormOpen && !isDescriptionFormOpen && !isAddFormOpen) setIsAddFormOpen(!isAddFormOpen)}}>
                     <FaStickyNote className={styles.fa}/>
                     <span className={styles.label}>Create Task</span>
                 </button>

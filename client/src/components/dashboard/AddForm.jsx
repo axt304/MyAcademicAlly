@@ -46,7 +46,7 @@ const AddForm = () => {
             <button
                 type='button'
                 aria-label='Cancel Add'
-                onClick={() => setIsAddFormOpen(false)}
+                onClick={() => {setIsAddFormOpen(false); setTaskName(''); setTaskDescription(''); setTaskDate('')}}
             >Cancel</button>
         </div>
     </form>

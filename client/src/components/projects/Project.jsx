@@ -27,7 +27,7 @@ const Project = ({project}) => {
                 if (isAddProjectFormOpen || isEditProjectFormOpen) {
                     return
                 }
-                if (e.target.className !== "_folder_1bxyg_31") {
+                if (e.target.className !== "_folder_ozdsk_31") {
                     return
                 }
                 setDashboardTitle(project.name)
@@ -39,7 +39,12 @@ const Project = ({project}) => {
         >
             {project.name}
             <div className={styles.projectIconsDiv}>
-                <FaEdit className={styles.projectIcons} onClick={() => {if (!isAddProjectFormOpen) setCurrentProject(project); setIsEditProjectFormOpen(!isEditProjectFormOpen)}}/>
+                <FaEdit className={styles.projectIcons} onClick={() => {
+                    if (!isAddProjectFormOpen && !isEditProjectFormOpen) {
+                        setCurrentProject(project)
+                        setIsEditProjectFormOpen(!isEditProjectFormOpen)
+                    }
+                }}/>
                 <FaTrash className={styles.projectIcons} onClick={() => {if (!isAddProjectFormOpen && !isEditProjectFormOpen) deleteProject(project.id)}}/>
             </div>
         </div>
