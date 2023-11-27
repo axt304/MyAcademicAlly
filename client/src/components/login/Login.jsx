@@ -1,37 +1,70 @@
-
 import React, { useState } from 'react';
-// import for the API or authentication service here
+import api from '../../api/api';
+import './Login.css'; 
 
-const Login = () => {
-  const [username, setUsername] = useState('');
+function Login() {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add login logic, possibly using an API
+    try {
+      // Add logic to submit the data to backend
+      const response = await api.post('/login', { email, password });
+      // Handle the response, e.g., storing the token, redirecting, etc.
+    } catch (error) {
+      // Handle errors, e.g., showing an error message
+    }
   };
 
-  return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input 
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
+ return (
+        <div className="cont">
+            {/* Login Form */}
+            <div className="form sign-in">
+                <h2>Welcome Back</h2>
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" required />
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input type="password" required />
+                    </label>
+                    <p className="forgot-pass">Forgot password?</p>
+                    <button type="submit" className="submit">Sign In</button>
+                </form>
+            </div>
+            {/* ... rest of your HTML ... */}
+        </div>
+    );
 };
 
 export default Login;
+                                    
+                               
+                 
+                        
+                     
+                         
+                                                      
+            
+                                      
+              
+                               
+                 
+                            
+                     
+                            
+                                                         
+            
+                                 
+              
+                                     
+             
+          
+    
+ 
+
+                     
 
