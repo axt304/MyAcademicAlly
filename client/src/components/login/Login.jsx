@@ -1,70 +1,58 @@
 import React, { useState } from 'react';
-import api from '../../api/api';
-import './Login.css'; 
-
-function Login() {
+import './AuthForm.css'; 
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      // Add logic to submit the data to backend
-      const response = await api.post('/login', { email, password });
-      // Handle the response, e.g., storing the token, redirecting, etc.
-    } catch (error) {
-      // Handle errors, e.g., showing an error message
-    }
+    //login logic here
+    console.log("Login details:", { email, password });
   };
 
- return (
-        <div className="cont">
-            {/* Login Form */}
-            <div className="form sign-in">
-                <h2>Welcome Back</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        <span>Email</span>
-                        <input type="email" required />
-                    </label>
-                    <label>
-                        <span>Password</span>
-                        <input type="password" required />
-                    </label>
-                    <p className="forgot-pass">Forgot password?</p>
-                    <button type="submit" className="submit">Sign In</button>
-                </form>
-            </div>
-            {/* ... rest of your HTML ... */}
+  return (
+    <section className="container forms">
+      <div className="welcome">
+        <header> Welcome Back!</header>
         </div>
-    );
+      <div className="form login">
+        <div className="form-content">
+          <header>Login</header>
+          <form onSubmit={handleLogin}>
+            <div className="field input-field">
+              <input 
+                type="email" 
+                placeholder="Email" 
+                className="input" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="field input-field">
+              <input 
+                type="password" 
+                placeholder="Password" 
+                className="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              {/* Implement password show/hide toggle */}
+            </div>
+
+            <div className="field button-field">
+              <button>Login</button>
+            </div>
+          </form>
+
+          <div className="form-link">
+            <span>Don't have an account? <a href="#" className="link signup-link">Signup</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Login;
-                                    
-                               
-                 
-                        
-                     
-                         
-                                                      
-            
-                                      
-              
-                               
-                 
-                            
-                     
-                            
-                                                         
-            
-                                 
-              
-                                     
-             
-          
-    
- 
-
-                     
-
