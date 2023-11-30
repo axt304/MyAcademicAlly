@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext'; // Adjust the import path according to your project structure
+import { Link } from 'react-router-dom';
 import api from '../../api/api';
 import '../login/AuthForm.css';
 
@@ -85,7 +86,7 @@ const Signup = () => {
           </form>
 
           <div className="form-link">
-            <span>Already have an account? <a href="#" className="link login-link">Login</a></span>
+          <span>Already have an account? <Link to="/login" className="link login-link">Login</Link></span>
           </div>
         </div>
       </div>
