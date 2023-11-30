@@ -1,44 +1,15 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext'; // Adjust the import path according to your project structure
-import { Link } from 'react-router-dom';
-import api from '../../api/api';
-import '../login/AuthForm.css';
+import React, { useState } from 'react';
+import '../login/AuthForm.css'; 
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { setAuth } = useContext(AuthContext); // Using AuthContext
-  const navigate = useNavigate();
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-    try {
-      const response = await api.post('/signup', { email, password });
-      if (response.data) {
-
-        setAuth({ email, token: response.data.token });
-        navigate('../dashboard'); // Redirect to dashboard after successful signup
-      }
-    } catch (error) {                                                                                                                                                                                                                                                   
-      alert("Signup failed. Please try again.");
-      console.error("Signup error:", error);
-    }
+    //ignup logic here
+    console.log("Signup details:", { email, password, confirmPassword });
   };
 
   return (
@@ -67,6 +38,7 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              {/* Implement password*/}
             </div>
 
             <div className="field input-field">
@@ -78,6 +50,7 @@ const Signup = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
+              {/* Implement password show/hide toggle */}
             </div>
 
             <div className="field button-field">
@@ -86,7 +59,7 @@ const Signup = () => {
           </form>
 
           <div className="form-link">
-          <span>Already have an account? <Link to="/login" className="link login-link">Login</Link></span>
+            <span>Already have an account? <a href="#" className="link login-link">Login</a></span>
           </div>
         </div>
       </div>
