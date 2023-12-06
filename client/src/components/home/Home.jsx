@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css'; // Ensure this is correctly pointing to your CSS file
+import './Home.css'; 
 
 const Home = () => {
   const navigate = useNavigate();
@@ -11,7 +11,11 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1 className="main-title">My Academic Ally</h1>
+      <h1 className="main-title"> My Academic Ally</h1>
+      <button class="button" data-text="Awesome">
+    <span class="actual-text">&nbsp;My Academic Ally&nbsp;</span>
+    <span aria-hidden="true" class="hover-text">&nbsp;Your Academic Agenda for Success&nbsp;</span>
+    </button>
       <div className="button-container">
         <div>
           <button className="btn" onClick={() => handleNavigate('/signup')}>
