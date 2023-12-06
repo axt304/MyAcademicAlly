@@ -1,0 +1,45 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker compose reference guide at
+# https://docs.docker.com/compose/compose-file/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi-container
+    ports:
+      - 8000:80
+    volumes:
+      - ./app:/code/app
+    depends_on:
+      - mysql-db
+    networks:
+      - app-network
+  
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql-container
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1qaz2wsx!QAZ@WSX
+      MYSQL_DATABASE: academicAlly
+      MYSQL_USER: test1234
+      MYSQL_PASSWORD: academicA!!y24
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./SQL:/docker-entrypoint-initdb.d  # Mount the init-scripts directory
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

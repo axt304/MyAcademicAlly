@@ -2,6 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship, Session
+from oauth2 import get_current_user
+from user import User
 
 from db import Base, get_db
 
@@ -28,6 +30,13 @@ class Task(BaseModel):
 @router.post("/api/tasks", tags=["tasks"])
 def create_task(task: Task, db: Session = Depends(get_db)):
     tdata = TaskData(name=task.name, description=task.description, due_date=task.due_date, user_id=task.user_id, project_id=task.project_id)
+#    tdata = TaskData()
+#    tdata.name = Column(task.name)
+#    tdata.description = Column(task.description)
+#    tdata.due_date = Column(task.due_date)
+#    tdata.user_id = Column(task.user_id)
+#    tdata.project_id = Column(task.project_id)
+
     db.add(tdata)
     db.commit()
     db.refresh(tdata)
@@ -35,15 +44,19 @@ def create_task(task: Task, db: Session = Depends(get_db)):
 
 @router.get("/api/tasks/{task_id}", tags=["tasks"])
 def get_task(task_id: int, db: Session = Depends(get_db)):
-    tdata = fetch_task_by_id(task_id)
+    tdata = fetch_task_by_id(db, task_id)
     if tdata is None:
         raise HTTPException(status_code=404, detail="Task not found")
     return Task(name=tdata.name, description=tdata.description, due_date=tdata.due_date, user_id=tdata.user_id, project_id=tdata.project_id).dict()
 
+@router.get("/api/alltasks", tags=["tasks"])
+def get_all_tasks(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    return db.query(TaskData).all()
+
 @router.put("/api/tasks/{task_id}", tags=["tasks"])
 def update_task(task_id: int, task: Task, db: Session = Depends(get_db)):
     tdata = fetch_task_by_id(db, task_id)
-    db.query(TaskData).filter(task_id==TaskData.id).update(tdata.dict())
+    db.query(TaskData).filter(task_id==TaskData.id).update(task.dict())
     db.commit()
     return {"message": "Task updated successfully"}
 
