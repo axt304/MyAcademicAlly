@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-<<<<<<< HEAD
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -13,7 +12,6 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return {"Hello":"World"}
-=======
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
