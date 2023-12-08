@@ -1,0 +1,22 @@
+
+.user-profile {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.user-profile h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.profile-info p {
+  margin: 5px 0;
+}
+
+

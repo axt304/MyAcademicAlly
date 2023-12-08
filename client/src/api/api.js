@@ -8,4 +8,5 @@ const fetchProjects = async () => {
     console.error('Error fetching projects', error);
   }
 };
+export default fetchProjects;
 

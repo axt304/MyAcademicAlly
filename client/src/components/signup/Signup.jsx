@@ -1,17 +1,18 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext'; // Adjust the import path according to your project structure
+//import { AuthContext } from '../../context/AuthContext'; // Adjust the import path according to your project structure
 import { Link } from 'react-router-dom';
 import api from '../../api/api';
 import '../login/AuthForm.css';
 
 const Signup = () => {
+  const [name, setName] = useState(''); //state for name
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { setAuth } = useContext(AuthContext); // Using AuthContext
+//const { setAuth } = useContext(AuthContext); // Using AuthContext
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -29,10 +30,9 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await api.post('/signup', { email, password });
+      const response = await api.post('/users', { name, email, password });
       if (response.data) {
-
-        setAuth({ email, token: response.data.token });
+       // setAuth({ email,`: token: response.data.token });
         navigate('../dashboard'); // Redirect to dashboard after successful signup
       }
     } catch (error) {                                                                                                                                                                                                                                                   
@@ -48,6 +48,16 @@ const Signup = () => {
           <header>Signup</header>
           <form onSubmit={handleSignup}>
             <div className="field input-field">
+              <input 
+                type="text" 
+                placeholder="Name" 
+                className="input" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+		<div className="field input-field">
               <input 
                 type="email" 
                 placeholder="Email" 

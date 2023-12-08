@@ -3,5 +3,8 @@ uvicorn
 python-multipart
 python-jose[cryptography]
 passlib[bcrypt]
+<<<<<<< HEAD
 pymysql
+=======
+>>>>>>> 4b2a630 (added files)
 sqlalchemy
