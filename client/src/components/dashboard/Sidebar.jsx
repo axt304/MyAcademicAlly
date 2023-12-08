@@ -2,6 +2,7 @@ import React from 'react'
 import { FaFolder, FaFolderPlus, FaStickyNote, FaTachometerAlt, FaSignOutAlt } from 'react-icons/fa'
 import styles from './styles/Sidebar.module.css'
 import { useStoreState, useStoreActions, action } from 'easy-peasy';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   //state
@@ -72,14 +73,16 @@ const Sidebar = () => {
                 </button>
             </li>
         }
+	<li id={styles.signOut}>
+    		<button onClick={() => console.log(4)}>
+        	<FaSignOutAlt className={styles.fa}/>
+        <span className={styles.label}>
+            <Link to="/">Sign Out</Link>
+        </span>
+    </button>
+</li>
 
-        <li id={styles.signOut}>
-            <button onClick={() => console.log(4)}>
-                <FaSignOutAlt className={styles.fa}/>
-                <span className={styles.label}>Sign Out</span>
-            </button>
-        </li>
-      </ul>
+	  </ul>
     </div>
   )
 }

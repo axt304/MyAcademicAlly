@@ -23,25 +23,24 @@ const Signup = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-const handleSignup = async (e) => {
-  e.preventDefault();
-  if (password !== confirmPassword) {
-    alert("Passwords do not match!");
-    return;
-  }
-  try {
-    const response = await api.post('/api/users', { name, email, password });
-    if (response.data && response.data.message === "User created successfully") {
-      alert('Signup successful. Please log in.'); // Show success message
-      navigate('../dashboard'); // Redirect to dashboard after successful signup
-    } else {
-      alert('Signup failed. Please try again.');
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
     }
-  } catch (error) {
-    alert('Signup failed. Please try again.');
-    console.error('Signup error:', error);
-  }
-};
+    try {
+      const response = await api.post('/api/users', { name, email, password });
+	   if (response.data) {
+
+        setAuth({ email, token: response.data.token });
+        navigate('../dashboard'); // Redirect to dashboard after successful signup
+      }
+    } catch (error) {                                                                                                                                                                                                                                                   
+      alert("Signup failed. Please try again.");
+      console.error("Signup error:", error);
+    }
+  };
 
   return (
     <section className="container forms">

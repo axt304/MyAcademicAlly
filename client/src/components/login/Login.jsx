@@ -8,21 +8,22 @@ import './AuthForm.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { setAuth } = useContext(AuthContext); //  AuthContext to manage auth state
+  const { setAuth } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post('/login', { email, password });
-      if (response.data) {
-
-        setAuth({ email, token: response.data.token }); // Set auth state
-        navigate('../dashboard'); // Redirect to the dashboard
+      const response = await api.post('/login', { username: email, password: password });
+      if (response.data && response.data.access_token) {
+        setAuth({ email, token: response.data.access_token });
+        navigate('../dashboard');
+      } else {
+        setError('Login failed. Please check your credentials.');
       }
     } catch (error) {
-      // Handle login errors (e.g., incorrect credentials)
-      alert('Login failed. Please check your credentials.');
+      setError('Login failed. Please check your credentials.');
       console.error('Login error:', error);
     }
   };
@@ -30,7 +31,7 @@ const Login = () => {
   return (
     <section className="container forms">
       <div className="welcome">
-        <header>Welcome Back!</header>
+        <header>MyAcademicAlly</header>
       </div>
       <div className="form login">
         <div className="form-content">
@@ -61,8 +62,10 @@ const Login = () => {
             </div>
           </form>
 
+          {error && <div className="error">{error}</div>}
+
           <div className="form-link">
-          <span>Don't have an account? <Link to="/signup" className="link signup-link">Signup</Link></span>
+            <span>Don't have an account? <Link to="/signup" className="link signup-link">Signup</Link></span>
           </div>
         </div>
       </div>
@@ -71,3 +74,4 @@ const Login = () => {
 };
 
 export default Login;
+
