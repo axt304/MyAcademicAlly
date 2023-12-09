@@ -12,7 +12,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-//const { setAuth } = useContext(AuthContext); // Using AuthContext
+  //const { setAuth } = useContext(AuthContext); // Using AuthContext
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -23,31 +23,47 @@ const Signup = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+const handleSignup = async (e) => {
+  e.preventDefault();
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+  try {
+    const response = await api.post('/api/users', { name, email, password });
+    if (response.data && response.data.message === "User created successfully") {
+      alert('Signup successful. Please log in.'); // Show success message
+      navigate('../dashboard'); // Redirect to dashboard after successful signup
+    } else {
+      alert('Signup failed. Please try again.');
     }
-    try {
-      const response = await api.post('/users', { name, email, password });
-      if (response.data) {
-       // setAuth({ email,`: token: response.data.token });
-        navigate('../dashboard'); // Redirect to dashboard after successful signup
-      }
-    } catch (error) {                                                                                                                                                                                                                                                   
-      alert("Signup failed. Please try again.");
-      console.error("Signup error:", error);
-    }
-  };
+  } catch (error) {
+    alert('Signup failed. Please try again.');
+    console.error('Signup error:', error);
+  }
+};
 
   return (
     <section className="container forms">
+      <div className="welcome">
+        <header>MyAcademicAlly</header>
+      </div>
       <div className="form signup">
         <div className="form-content">
           <header>Signup</header>
           <form onSubmit={handleSignup}>
-            <div className="field input-field">
+           <div className="field input-field">
+              <input 
+                type="text" 
+                placeholder="Name" 
+                className="input" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+ 
+	  <div className="field input-field">
               <input 
                 type="text" 
                 placeholder="Name" 
