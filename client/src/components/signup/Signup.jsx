@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext'; // Adjust the import path according to your project structure
+//import { AuthContext } from '../../context/AuthContext'; // Adjust the import path according to your project structure
 import { Link } from 'react-router-dom';
 import api from '../../api/api';
 import '../login/AuthForm.css';
@@ -12,7 +12,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { setAuth } = useContext(AuthContext); // Using AuthContext
+  //const { setAuth } = useContext(AuthContext); // Using AuthContext
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -109,3 +109,5 @@ const handleSignup = async (e) => {
     </section>
   );
 };
+
+export default Signup;
