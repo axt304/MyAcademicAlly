@@ -13,7 +13,7 @@ const Home = () => {
     <div className="home-container">
       <h1 className="main-title"> My Academic Ally</h1>
       <button class="button" data-text="Awesome">
-    <span class="actual-text">&nbsp;My Academic Ally&nbsp;</span>
+    <span class="actual-text">&nbsp; &nbsp;</span>
     <span aria-hidden="true" class="hover-text">&nbsp;Your Academic Agenda for Success&nbsp;</span>
     </button>
       <div className="button-container">

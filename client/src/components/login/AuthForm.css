@@ -14,14 +14,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: black;
     margin: 0;
 }
 
 .container {
     width: 40%;
     max-width: 500px;
-    max-height: 550px;
+    max-height: 670px;
     align-items: center;
     margin: 0 auto;
     margin-top: 100px;
@@ -33,13 +33,36 @@ body {
     overflow: auto;
 }
 
+.forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    /* margin-bottom: 10px; */
+    color: black;
+}
+
 .form {
     width: 100%;
     padding: 20px;
     border-radius: 6px;
+    background-color: #f4f4f4;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
-.form-header {
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form header {
     font-size: 28px;
     font-weight: 600;
     color: #232836;
@@ -68,6 +91,7 @@ body {
     outline: none;
     padding: 0 15px;
     border: 1px solid #CACACA;
+    background-color: #fff;
 }
 
 .field input:focus {
@@ -130,7 +154,7 @@ body {
         padding: 20px;
     }
 
-    .form-header {
+    .form header {
         font-size: 24px;
     }
 
@@ -139,16 +163,3 @@ body {
         font-size: 14px;
     }
 }
-
-.welcome {
-  font-size: 30px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.signup {
-  font-size: 30px;
-  text-align: center;
-  font-weight: bold;
-}
-
