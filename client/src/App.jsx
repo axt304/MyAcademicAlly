@@ -6,11 +6,11 @@ import Dashboard from './components/dashboard/Dashboard';
 import Login from './components/login/Login';  // Added import for Login
 import Signup from './components/signup/Signup';  // Added import for Signup
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+//import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
-    <AuthProvider> {/* Wrap your application with AuthProvider */}
+ //   <AuthProvider> {/* Wrap your application with AuthProvider */}
       <div className='App'>
         <Router>
           <Routes>
@@ -22,7 +22,7 @@ function App() {
           </Routes>
         </Router>
       </div>
-    </AuthProvider>
+    //</AuthProvider>
   );
 }
 

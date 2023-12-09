@@ -2,22 +2,25 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import api from '../../api/api';
-import { AuthContext } from '../../context/AuthContext';
+//import { AuthContext } from '../../context/AuthContext';
 import './AuthForm.css'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { setAuth } = useContext(AuthContext); //  AuthContext to manage auth state
+  //const { setAuth } = useContext(AuthContext); //  AuthContext to manage auth state
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post('/login', { email, password });
+        const formData = new FormData();
+        formData.append('username', email)
+        formData.append('password', password)
+      const response = await api.post('/login', formData);
       if (response.data) {
 
-        setAuth({ email, token: response.data.token }); // Set auth state
+        //setAuth({ email, token: response.data.token }); // Set auth state
         navigate('../dashboard'); // Redirect to the dashboard
       }
     } catch (error) {

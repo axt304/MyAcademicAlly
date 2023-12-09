@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+      /*
     const checkUserLoggedIn = async () => {
       try {
         const response = await api.get('/auth/me');
@@ -19,16 +20,21 @@ export const AuthProvider = ({ children }) => {
       }
     };
     checkUserLoggedIn();
+    */
   }, []);
 
   const login = async (email, password) => {
+      /*
     const response = await api.post('/auth/login', { email, password });
     setCurrentUser(response.data.user);
+    */
   };
 
   const logout = async () => {
+      /*
     await api.post('/auth/logout');
     setCurrentUser(null);
+    */
   };
 
   return (

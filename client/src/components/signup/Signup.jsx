@@ -11,7 +11,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { setAuth } = useContext(AuthContext); // Using AuthContext
+  //const { setAuth } = useContext(AuthContext); // Using AuthContext
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -29,10 +29,11 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await api.post('/signup', { email, password });
+        const name = 'Test Name';
+      const response = await api.post('/api/users', { name, email, password });
       if (response.data) {
 
-        setAuth({ email, token: response.data.token });
+        //setAuth({ email, token: response.data.token });
         navigate('../dashboard'); // Redirect to dashboard after successful signup
       }
     } catch (error) {                                                                                                                                                                                                                                                   
